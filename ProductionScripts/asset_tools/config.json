@@ -1,0 +1,283 @@
+{
+    "folder_structure": {
+        "Character": {
+            "{asset_name}": {
+                "work": {
+                    "maya": {},
+                    "houdini": {},
+                    "substance": {},
+                    "unreal": {
+                        "meshes": {},
+                        "materials": {},
+                        "animations": {},
+                        "blueprints": {}
+                    }
+                },
+                "publish": {
+                    "geo": {
+                        "high": {},
+                        "low": {},
+                        "proxy": {}
+                    },
+                    "textures": {
+                        "4k": {},
+                        "2k": {},
+                        "1k": {}
+                    },
+                    "rigs": {},
+                    "caches": {
+                        "alembic": {},
+                        "fbx": {},
+                        "uasset": {}
+                    },
+                    "unreal": {
+                        "meshes": {},
+                        "materials": {},
+                        "animations": {},
+                        "blueprints": {}
+                    }
+                },
+                "reference": {
+                    "concept": {},
+                    "reference": {}
+                },
+                "prism": {
+                    "scenes": {},
+                    "renders": {},
+                    "playblasts": {},
+                    "exports": {
+                        "abc": {},
+                        "fbx": {},
+                        "obj": {}
+                    },
+                    "textures": {}
+                }
+            }
+        },
+        "Prop": {
+            "{asset_name}": {
+                "work": {
+                    "maya": {},
+                    "houdini": {},
+                    "substance": {},
+                    "unreal": {
+                        "meshes": {},
+                        "materials": {},
+                        "blueprints": {}
+                    }
+                },
+                "publish": {
+                    "geo": {
+                        "high": {},
+                        "low": {},
+                        "proxy": {}
+                    },
+                    "textures": {
+                        "4k": {},
+                        "2k": {},
+                        "1k": {}
+                    },
+                    "caches": {
+                        "alembic": {},
+                        "fbx": {},
+                        "uasset": {}
+                    },
+                    "unreal": {
+                        "meshes": {},
+                        "materials": {},
+                        "blueprints": {}
+                    }
+                },
+                "prism": {
+                    "scenes": {},
+                    "renders": {},
+                    "exports": {
+                        "abc": {},
+                        "fbx": {},
+                        "obj": {}
+                    },
+                    "textures": {}
+                }
+            }
+        },
+        "Set": {
+            "{asset_name}": {
+                "work": {
+                    "maya": {},
+                    "houdini": {},
+                    "unreal": {
+                        "levels": {},
+                        "materials": {},
+                        "blueprints": {}
+                    }
+                },
+                "publish": {
+                    "geo": {
+                        "high": {},
+                        "low": {},
+                        "proxy": {}
+                    },
+                    "textures": {
+                        "4k": {},
+                        "2k": {},
+                        "1k": {}
+                    },
+                    "caches": {
+                        "alembic": {},
+                        "fbx": {},
+                        "uasset": {}
+                    },
+                    "lighting": {},
+                    "unreal": {
+                        "levels": {},
+                        "materials": {},
+                        "blueprints": {}
+                    }
+                },
+                "reference": {
+                    "concept": {},
+                    "reference": {}
+                },
+                "prism": {
+                    "scenes": {},
+                    "renders": {},
+                    "exports": {
+                        "abc": {},
+                        "fbx": {},
+                        "obj": {}
+                    },
+                    "textures": {}
+                }
+            }
+        },
+        "Vehicle": {
+            "{asset_name}": {
+                "work": {
+                    "maya": {},
+                    "houdini": {},
+                    "substance": {},
+                    "unreal": {
+                        "meshes": {},
+                        "materials": {},
+                        "blueprints": {}
+                    }
+                },
+                "publish": {
+                    "geo": {
+                        "high": {},
+                        "low": {},
+                        "proxy": {}
+                    },
+                    "textures": {
+                        "4k": {},
+                        "2k": {},
+                        "1k": {}
+                    },
+                    "rigs": {},
+                    "caches": {
+                        "alembic": {},
+                        "fbx": {},
+                        "uasset": {}
+                    },
+                    "unreal": {
+                        "meshes": {},
+                        "materials": {},
+                        "blueprints": {}
+                    }
+                },
+                "prism": {
+                    "scenes": {},
+                    "renders": {},
+                    "exports": {
+                        "abc": {},
+                        "fbx": {},
+                        "obj": {}
+                    },
+                    "textures": {}
+                }
+            }
+        },
+        "Weapon": {
+            "{asset_name}": {
+                "work": {
+                    "maya": {},
+                    "houdini": {},
+                    "substance": {},
+                    "unreal": {
+                        "meshes": {},
+                        "materials": {},
+                        "blueprints": {}
+                    }
+                },
+                "publish": {
+                    "geo": {
+                        "high": {},
+                        "low": {},
+                        "proxy": {}
+                    },
+                    "textures": {
+                        "4k": {},
+                        "2k": {},
+                        "1k": {}
+                    },
+                    "caches": {
+                        "alembic": {},
+                        "fbx": {},
+                        "uasset": {}
+                    },
+                    "unreal": {
+                        "meshes": {},
+                        "materials": {},
+                        "blueprints": {}
+                    }
+                },
+                "prism": {
+                    "scenes": {},
+                    "renders": {},
+                    "exports": {
+                        "abc": {},
+                        "fbx": {},
+                        "obj": {}
+                    },
+                    "textures": {}
+                }
+            }
+        }
+    },
+    "naming_convention": {
+        "Character": "CH_{asset_name}",
+        "Prop": "PR_{asset_name}",
+        "Set": "ST_{asset_name}",
+        "Vehicle": "VH_{asset_name}",
+        "Weapon": "WP_{asset_name}"
+    },
+    "unreal": {
+        "project_path": "",
+        "content_path": "Content/Assets",
+        "import_settings": {
+            "Character": {
+                "import_mesh": true,
+                "import_materials": true,
+                "import_textures": true,
+                "auto_generate_collision": true
+            },
+            "Prop": {
+                "import_mesh": true,
+                "import_materials": true,
+                "import_textures": true,
+                "auto_generate_collision": true
+            },
+            "Set": {
+                "import_mesh": true,
+                "import_materials": true,
+                "import_textures": true,
+                "auto_generate_collision": true
+            }
+        }
+    },
+    "prism": {
+        "project_path": "",
+        "asset_step_names": ["modeling", "texturing", "rigging", "animation"],
+        "export_formats": ["abc", "fbx", "obj", "uasset"]
+    }
+}
