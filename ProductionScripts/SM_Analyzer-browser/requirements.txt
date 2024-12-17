@@ -1,0 +1,53 @@
+# Dashboard and Visualization
+streamlit>=1.28.0
+streamlit-extras>=0.3.5
+dash>=2.11.0
+dash-bootstrap-components>=1.5.0
+fastapi>=0.104.0
+uvicorn>=0.24.0
+
+# Data Processing and Analysis
+pandas>=2.1.1
+numpy>=1.24.0
+scipy>=1.11.3
+scikit-learn>=1.3.1
+
+# Visualization Libraries
+plotly>=5.17.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+wordcloud>=1.9.2
+
+# Machine Learning and NLP
+torch>=2.1.0
+transformers>=4.35.2
+textblob>=0.17.1
+nltk>=3.8.1
+gensim>=4.3.2
+pyLDAvis>=3.4.1
+spacy==3.7.2
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1.tar.gz
+
+# Utilities
+python-dotenv>=1.0.0
+requests>=2.31.0
+praw>=7.7.1
+google-api-python-client>=2.108.0
+google-auth-oauthlib>=1.1.0
+google-analytics-data>=0.17.1
+python-instagram>=1.3.2
+
+# Social Media APIs
+tweepy>=4.14.0
+facebook-business==15.0.0
+
+# Web Framework & Utilities
+Flask>=3.0.0
+Flask-Cors>=4.0.0
+PyYAML>=6.0.1
+python-dateutil>=2.8.2
+emoji>=2.8.0
+netifaces>=0.11.0
+aiohttp>=3.9.1
+asyncio>=3.4.3
+joblib>=1.1.1

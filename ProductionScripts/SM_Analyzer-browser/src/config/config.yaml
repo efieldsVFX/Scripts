@@ -1,0 +1,321 @@
+# EDGLRD Social Media Analyzer Configuration
+# Production-ready configuration with enterprise-grade security and scalability
+
+environment: ${ENVIRONMENT:-production}
+region: ${REGION:-us-east-1}
+debug: ${DEBUG:-false}
+
+# API Authentication
+api_auth:
+  instagram:
+    client_id: ${INSTAGRAM_CLIENT_ID}
+    client_secret: ${INSTAGRAM_CLIENT_SECRET}
+    access_token: ${INSTAGRAM_ACCESS_TOKEN}
+    business_account_id: ${INSTAGRAM_BUSINESS_ACCOUNT_ID}
+    token_refresh_window: 3600  # seconds before token expiry to refresh
+  tiktok:
+    app_id: ${TIKTOK_APP_ID}
+    client_key: ${TIKTOK_CLIENT_KEY}
+    client_secret: ${TIKTOK_CLIENT_SECRET}
+    access_token: ${TIKTOK_ACCESS_TOKEN}
+    business_id: ${TIKTOK_BUSINESS_ID}
+    token_refresh_window: 3600
+  twitter:
+    api_key: ${TWITTER_API_KEY}
+    api_secret: ${TWITTER_API_SECRET}
+    access_token: ${TWITTER_ACCESS_TOKEN}
+    access_token_secret: ${TWITTER_ACCESS_TOKEN_SECRET}
+    bearer_token: ${TWITTER_BEARER_TOKEN}
+    token_refresh_window: 86400
+  youtube:
+    api_key: ${YOUTUBE_API_KEY}
+    client_id: ${YOUTUBE_CLIENT_ID}
+    client_secret: ${YOUTUBE_CLIENT_SECRET}
+    channel_id: ${YOUTUBE_CHANNEL_ID}
+    token_refresh_window: 3600
+  reddit:
+    client_id: ${REDDIT_CLIENT_ID}
+    client_secret: ${REDDIT_CLIENT_SECRET}
+    user_agent: ${REDDIT_USER_AGENT:-"SocialMediaAnalyzer/0.1"}
+    username: ${REDDIT_USERNAME}
+    password: ${REDDIT_PASSWORD}
+    token_refresh_window: 3600
+  google_analytics:
+    view_id: ${GA_VIEW_ID}
+    service_account_path: ${GA_SERVICE_ACCOUNT_PATH}
+
+# Metrics Configuration
+metrics:
+  audience:
+    demographics:
+      enabled: true
+      platforms: ["instagram", "tiktok", "youtube"]
+    active_times:
+      enabled: true
+      platforms: ["instagram", "tiktok"]
+    interests:
+      enabled: true
+      platforms: ["twitter", "instagram"]
+    age_group_interactions:
+      enabled: true
+      platforms: ["instagram", "youtube"]
+    follower_growth:
+      enabled: true
+      platforms: ["instagram", "tiktok", "twitter"]
+
+  engagement:
+    sentiment:
+      enabled: true
+      platforms: ["twitter", "tiktok"]
+    contextual_rate:
+      enabled: true
+      platforms: ["instagram", "tiktok"]
+    velocity:
+      enabled: true
+      platforms: ["instagram", "twitter", "youtube"]
+
+  content:
+    journey_analysis:
+      enabled: true
+      platforms: ["instagram", "youtube"]
+    creative_impact:
+      enabled: true
+      platforms: ["instagram"]
+    predictive_metrics:
+      enabled: true
+      platforms: ["instagram"]
+      ml_models:
+        virality: true
+        decay: true
+        plv: true
+        trend_detection: true
+
+  video:
+    behavioral_patterns:
+      enabled: true
+      platforms: ["youtube", "tiktok"]
+    recurring_views:
+      enabled: true
+      platforms: ["youtube", "tiktok"]
+    engagement_loyalty:
+      enabled: true
+      platforms: ["youtube", "tiktok"]
+
+  conversion:
+    traffic:
+      enabled: true
+      source: "google_analytics"
+    sales:
+      enabled: true
+      platforms: ["tiktok", "instagram"]
+    leads:
+      enabled: true
+      platforms: ["tiktok", "facebook"]
+
+  platform_specific:
+    tiktok:
+      looping_rate: true
+      completion_rate: true
+    instagram:
+      carousel_spread: true
+      swipe_up_ctr: true
+    twitter:
+      top_tweets: true
+      thread_momentum: true
+    youtube:
+      retention_rate: true
+      thumbnail_ctr: true
+
+  competitive:
+    share_of_voice:
+      enabled: true
+      providers: ["brandwatch", "meltwater"]
+    benchmarking:
+      enabled: true
+      platforms: ["all"]
+    trend_analysis:
+      enabled: true
+      platforms: ["twitter", "tiktok"]
+
+  revenue:
+    shoppable_posts:
+      enabled: true
+      platforms: ["instagram", "tiktok"]
+    ad_revenue:
+      enabled: true
+      platforms: ["youtube", "twitter"]
+    link_ctr:
+      enabled: true
+      tracking: "google_analytics"
+
+# Database Configuration
+database:
+  primary:
+    engine: postgresql
+    host: ${DB_HOST}
+    port: ${DB_PORT:-5432}
+    name: ${DB_NAME}
+    user: ${DB_USER}
+    password: ${DB_PASSWORD}
+    pool:
+      min_size: 5
+      max_size: 20
+      max_overflow: 10
+    ssl:
+      mode: verify-full
+      cert_path: ${DB_CERT_PATH}
+    retry:
+      max_attempts: 3
+      backoff_factor: 2
+  replica:
+    enabled: ${DB_REPLICA_ENABLED:-true}
+    hosts: ${DB_REPLICA_HOSTS}
+    read_preference: nearest
+
+# Cache Configuration
+cache:
+  redis:
+    primary:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT:-6379}
+      password: ${REDIS_PASSWORD}
+      db: 0
+      ssl: true
+      timeout: 1.0
+    replica:
+      enabled: ${REDIS_REPLICA_ENABLED:-true}
+      hosts: ${REDIS_REPLICA_HOSTS}
+  policies:
+    metrics_ttl: 300
+    session_ttl: 3600
+    rate_limit_ttl: 60
+
+# Storage Configuration
+storage:
+  s3:
+    bucket: ${S3_BUCKET:-edglrd-social-analytics}
+    region: ${AWS_REGION:-us-east-1}
+    access_key: ${AWS_ACCESS_KEY}
+    secret_key: ${AWS_SECRET_KEY}
+    encryption:
+      enabled: true
+      kms_key_id: ${KMS_KEY_ID}
+    lifecycle:
+      transition_days: 30
+      expiration_days: 90
+
+# Machine Learning Configuration
+ml:
+  model_registry:
+    type: s3
+    path: models/
+    versioning: true
+  training:
+    framework: pytorch
+    batch_size: 64
+    epochs: 100
+    validation_split: 0.2
+    early_stopping:
+      patience: 5
+      min_delta: 0.001
+  inference:
+    batch_size: 32
+    timeout: 30
+    max_retries: 3
+
+# Monitoring & Observability
+monitoring:
+  apm:
+    service_name: edglrd-social-analyzer
+    environment: ${ENVIRONMENT}
+    sample_rate: 0.1
+  metrics:
+    prometheus:
+      enabled: true
+      port: ${PROMETHEUS_PORT:-9090}
+      path: /metrics
+      scrape_interval: 15s
+    statsd:
+      enabled: true
+      host: ${STATSD_HOST}
+      port: ${STATSD_PORT:-8125}
+      prefix: edglrd.social
+  tracing:
+    enabled: true
+    provider: datadog
+    sample_rate: 0.1
+  reddit:
+    subreddit: "EDGLRD"
+    metrics:
+      - active_users
+      - subscriber_growth
+      - post_engagement
+      - sentiment
+      - top_posts
+      - user_activity
+    update_interval: 3600  # seconds
+
+# Logging Configuration
+logging:
+  level: ${LOG_LEVEL:-INFO}
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    console:
+      enabled: true
+      format: colored
+    file:
+      enabled: true
+      path: ${LOG_PATH:-logs/}
+      max_size: 10MB
+      backup_count: 5
+      compress: true
+    cloudwatch:
+      enabled: ${CLOUDWATCH_ENABLED:-true}
+      group: edglrd-social-analyzer
+      stream: ${ENVIRONMENT}
+      retention_days: 30
+
+# Security Configuration
+security:
+  encryption:
+    provider: aws-kms
+    key_id: ${KMS_KEY_ID}
+    algorithm: AES-256-GCM
+  rate_limiting:
+    enabled: true
+    strategy: token-bucket
+    global:
+      rate: 1000
+      burst: 100
+    per_ip:
+      rate: 100
+      burst: 20
+  authentication:
+    jwt:
+      secret: ${JWT_SECRET}
+      algorithm: HS256
+      expiry: 3600
+  cors:
+    allowed_origins: ${CORS_ORIGINS}
+    allowed_methods: ["GET", "POST", "PUT", "DELETE"]
+    allow_credentials: true
+    max_age: 3600
+
+# Feature Flags
+features:
+  real_time_analytics: ${FEATURE_REALTIME:-true}
+  advanced_ml: ${FEATURE_ML:-true}
+  auto_optimization: ${FEATURE_AUTO_OPT:-true}
+  beta_features: ${FEATURE_BETA:-false}
+
+# Performance Tuning
+performance:
+  worker_threads: ${WORKER_THREADS:-4}
+  task_queue_size: ${QUEUE_SIZE:-1000}
+  batch_size: ${BATCH_SIZE:-100}
+  timeout:
+    default: 30
+    long_running: 300
+  circuit_breaker:
+    failure_threshold: 5
+    reset_timeout: 60

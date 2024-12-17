@@ -1,0 +1,22 @@
+2024-12-12 11:42:45,070 - sm_analyzer - WARNING - Instagram API credentials not found in config, using test data
+2024-12-12 11:42:45,070 - sm_analyzer - INFO - Instagram collector initialized
+2024-12-12 11:42:45,072 - src.collectors.tiktok_collector - WARNING - TikTok API initialization failed, using test data: 'business_id'
+2024-12-12 11:42:45,072 - src.collectors.twitter_collector - INFO - Twitter collector initialized with API keys
+2024-12-12 11:42:45,072 - sm_analyzer - WARNING - No YouTube API key provided, using test data
+2024-12-12 11:42:45,101 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-12 11:42:45,106 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-12 11:42:45,107 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-12 11:42:54,721 - sm_analyzer - WARNING - Instagram API credentials not found in config, using test data
+2024-12-12 11:42:54,721 - sm_analyzer - INFO - Instagram collector initialized
+2024-12-12 11:42:54,721 - src.collectors.tiktok_collector - WARNING - TikTok API initialization failed, using test data: 'business_id'
+2024-12-12 11:42:54,721 - src.collectors.twitter_collector - INFO - Twitter collector initialized with API keys
+2024-12-12 11:42:54,721 - sm_analyzer - WARNING - No YouTube API key provided, using test data
+2024-12-12 11:42:54,722 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-12 11:43:32,756 - sm_analyzer - WARNING - Instagram API credentials not found in config, using test data
+2024-12-12 11:43:32,756 - sm_analyzer - INFO - Instagram collector initialized
+2024-12-12 11:43:32,756 - src.collectors.tiktok_collector - WARNING - TikTok API initialization failed, using test data: 'business_id'
+2024-12-12 11:43:32,757 - src.collectors.twitter_collector - INFO - Twitter collector initialized with API keys
+2024-12-12 11:43:32,757 - sm_analyzer - WARNING - No YouTube API key provided, using test data
+2024-12-12 11:43:32,758 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-12 11:43:32,764 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-12 11:43:32,764 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully

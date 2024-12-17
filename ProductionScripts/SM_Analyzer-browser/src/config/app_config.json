@@ -1,0 +1,317 @@
+{
+    "app_name": "EDGLRD Social Media Analyzer",
+    "version": "1.0.0",
+    "organization": "EDGLRD",
+    "description": "Enterprise-grade social media analytics platform for comprehensive cross-platform insights",
+    "maintainers": {
+        "team": "EDGLRD Analytics Team",
+        "contact": "analytics@edglrd.com"
+    },
+    "platforms": {
+        "instagram": {
+            "enabled": true,
+            "api_version": "v12.0",
+            "metrics": {
+                "content": {
+                    "basic": ["reach", "impressions", "engagement", "saves", "shares"],
+                    "advanced": ["engagement_rate", "save_rate", "viral_coefficient"],
+                    "stories": ["views", "exits", "replies", "swipe_ups", "completion_rate"],
+                    "reels": ["plays", "likes", "shares", "comments", "avg_watch_time"],
+                    "shopping": ["product_views", "product_clicks", "purchases", "cart_adds"]
+                },
+                "audience": {
+                    "demographics": ["age", "gender", "location", "language"],
+                    "psychographics": ["interests", "behaviors", "affinities"],
+                    "growth": ["follower_change", "reach_growth", "engagement_growth"]
+                }
+            },
+            "update_interval": 3600,
+            "rate_limit": 200,
+            "batch_size": 50,
+            "retry_config": {
+                "max_attempts": 3,
+                "backoff_factor": 1.5
+            }
+        },
+        "tiktok": {
+            "enabled": true,
+            "api_version": "v2",
+            "metrics": {
+                "content": {
+                    "basic": ["views", "likes", "comments", "shares"],
+                    "advanced": ["watch_time", "completion_rate", "rewatch_rate"],
+                    "audio": ["uses", "shares", "trending_score"],
+                    "hashtags": ["views", "engagement_rate", "trending_score"]
+                },
+                "audience": {
+                    "demographics": ["age", "gender", "location", "device"],
+                    "behavior": ["active_hours", "sound_preferences", "interaction_patterns"]
+                }
+            },
+            "update_interval": 3600,
+            "rate_limit": 100,
+            "batch_size": 20,
+            "retry_config": {
+                "max_attempts": 3,
+                "backoff_factor": 1.5
+            }
+        },
+        "twitter": {
+            "enabled": true,
+            "api_version": "2.0",
+            "metrics": {
+                "content": ["impressions", "engagements", "retweets", "likes"],
+                "audience": ["demographics", "interests", "locations"],
+                "threads": ["engagement_flow", "completion_rate"],
+                "topics": ["trending", "sentiment", "reach"]
+            },
+            "update_interval": 1800,
+            "rate_limit": 180,
+            "batch_size": 100
+        },
+        "youtube": {
+            "enabled": true,
+            "api_version": "v3",
+            "metrics": {
+                "content": ["views", "watch_time", "retention", "engagement"],
+                "audience": ["demographics", "geography", "devices"],
+                "revenue": ["estimated_revenue", "rpm", "playback_based_cpm"],
+                "interaction": ["likes", "comments", "shares", "subscribers"]
+            },
+            "update_interval": 3600,
+            "rate_limit": 100,
+            "batch_size": 50
+        }
+    },
+    "analysis": {
+        "audience_insights": {
+            "update_frequency": "daily",
+            "retention_days": 90,
+            "segmentation": {
+                "enabled": true,
+                "min_segment_size": 100,
+                "max_segments": 10
+            },
+            "ml_features": {
+                "clustering": true,
+                "prediction": true,
+                "anomaly_detection": true
+            }
+        },
+        "content_intelligence": {
+            "performance_tracking": {
+                "real_time": true,
+                "historical": true,
+                "predictive": true
+            },
+            "optimization": {
+                "auto_scheduling": true,
+                "content_recommendations": true,
+                "ab_testing": true
+            },
+            "ml_models": {
+                "refresh_frequency": "weekly",
+                "min_training_samples": 1000,
+                "validation_split": 0.2
+            }
+        },
+        "engagement_intelligence": {
+            "sentiment_threshold": 0.5,
+            "velocity_window": "1h"
+        },
+        "content_analysis": {
+            "ml_model_refresh": "weekly",
+            "min_data_points": 100
+        },
+        "competitive_analysis": {
+            "benchmark_frequency": "weekly",
+            "competitors_limit": 10
+        },
+        "audience": {
+            "demographic_segments": ["age", "gender", "location", "interests"],
+            "behavior_tracking": ["engagement_patterns", "content_preferences", "active_times"],
+            "growth_metrics": ["follower_growth", "churn_rate", "retention_rate"],
+            "update_interval": 86400
+        },
+        "content": {
+            "performance_metrics": ["engagement_rate", "reach_rate", "conversion_rate"],
+            "virality_tracking": ["viral_coefficient", "sharing_velocity", "growth_rate"],
+            "sentiment_analysis": ["positive", "negative", "neutral", "emotional_intensity"],
+            "update_interval": 3600
+        },
+        "competitive": {
+            "sov_tracking": ["mention_share", "engagement_share", "hashtag_share"],
+            "benchmark_metrics": ["engagement_rate", "growth_rate", "content_effectiveness"],
+            "trend_monitoring": ["emerging_trends", "industry_benchmarks", "competitor_moves"],
+            "update_interval": 86400
+        },
+        "revenue": {
+            "shopping_metrics": ["product_views", "conversion_rate", "average_order_value"],
+            "ad_performance": ["impressions", "clicks", "conversions", "revenue"],
+            "attribution_tracking": ["first_touch", "last_touch", "multi_touch"],
+            "update_interval": 3600
+        }
+    },
+    "reporting": {
+        "automated_reports": {
+            "types": {
+                "executive_summary": {
+                    "frequency": "weekly",
+                    "format": ["pdf", "dashboard"],
+                    "recipients": ["${EXEC_EMAIL_LIST}"]
+                },
+                "performance_metrics": {
+                    "frequency": "daily",
+                    "format": ["excel", "dashboard"],
+                    "recipients": ["${ANALYST_EMAIL_LIST}"]
+                }
+            },
+            "customization": {
+                "branding": true,
+                "interactive_elements": true,
+                "export_formats": ["pdf", "excel", "json"]
+            }
+        },
+        "alerts": {
+            "performance": {
+                "engagement_drop": {"threshold": -20, "window": "1h"},
+                "viral_potential": {"threshold": 200, "window": "30m"},
+                "sentiment_shift": {"threshold": 0.3, "window": "6h"}
+            },
+            "technical": {
+                "api_errors": {"threshold": 5, "window": "5m"},
+                "data_quality": {"threshold": 0.95, "window": "1h"}
+            }
+        },
+        "alert_thresholds": {
+            "engagement_drop": -20,
+            "viral_potential": 80,
+            "sentiment_change": 0.2,
+            "competitor_activity": "high"
+        }
+    },
+    "optimization": {
+        "caching": {
+            "enabled": true,
+            "ttl": {
+                "metrics": 300,
+                "reports": 3600,
+                "ml_predictions": 1800
+            }
+        },
+        "performance": {
+            "batch_processing": true,
+            "parallel_execution": true,
+            "max_concurrent_requests": 50
+        },
+        "ml_models": {
+            "content_prediction": {
+                "enabled": true,
+                "model_type": "gradient_boosting",
+                "update_frequency": "weekly"
+            },
+            "audience_segmentation": {
+                "enabled": true,
+                "model_type": "clustering",
+                "update_frequency": "monthly"
+            },
+            "trend_detection": {
+                "enabled": true,
+                "model_type": "time_series",
+                "update_frequency": "daily"
+            }
+        },
+        "auto_optimization": {
+            "posting_times": true,
+            "content_types": true,
+            "hashtag_selection": true,
+            "audience_targeting": true
+        }
+    },
+    "network": {
+        "connections": {
+            "wired": {
+                "enabled": true,
+                "interface": "eth0",
+                "dhcp": true,
+                "retry_config": {
+                    "max_attempts": 3,
+                    "backoff_factor": 1.5
+                }
+            },
+            "wireless": {
+                "enabled": true,
+                "interface": "wlan0",
+                "scan_interval": 300,
+                "networks": {
+                    "EDGLRD": {
+                        "priority": 1,
+                        "security": "wpa2",
+                        "authentication": "password",
+                        "password": "hackerM@N123",
+                        "auto_connect": true
+                    },
+                    "EDGLRD_GUEST": {
+                        "priority": 2,
+                        "security": "wpa2",
+                        "authentication": "password",
+                        "password": "INVADERZ",
+                        "auto_connect": true
+                    }
+                },
+                "retry_config": {
+                    "max_attempts": 3,
+                    "backoff_factor": 1.5
+                }
+            }
+        },
+        "timeout": {
+            "connection": 30,
+            "request": 10,
+            "idle": 300
+        },
+        "proxy": {
+            "enabled": "${USE_PROXY:-false}",
+            "host": "${PROXY_HOST}",
+            "port": "${PROXY_PORT}",
+            "auth": {
+                "required": "${PROXY_AUTH_REQUIRED:-false}",
+                "username": "${PROXY_USERNAME}",
+                "password": "${PROXY_PASSWORD}"
+            }
+        },
+        "fallback": {
+            "enabled": true,
+            "retry_interval": 60,
+            "max_retries": 5
+        }
+    },
+    "server": {
+        "host": "0.0.0.0",
+        "port": 5000,
+        "allowed_hosts": ["*"],
+        "security": {
+            "cors_enabled": true,
+            "allowed_origins": ["*"],
+            "ssl": {
+                "enabled": false,
+                "cert_file": "${SSL_CERT_PATH}",
+                "key_file": "${SSL_KEY_PATH}"
+            }
+        },
+        "rate_limiting": {
+            "enabled": true,
+            "requests_per_minute": 60
+        }
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "logs/app.log",
+        "rotate": "daily",
+        "backup_count": 7
+    },
+    "storage": {
+        "type": "postgresql",
+        "metrics_retention": "365d"
+    }
+}

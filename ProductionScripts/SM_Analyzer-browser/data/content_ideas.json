@@ -1,0 +1,316 @@
+{
+  "Instagram": [
+    {
+      "content_type": "Story",
+      "theme": "Company Culture",
+      "suggested_elements": [
+        "Include branded hashtags",
+        "Feature team member",
+        "Add question",
+        "Incorporate sound effects"
+      ],
+      "optimal_posting_time": 14,
+      "predicted_impact": 8.94,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 2245,
+        "\ud83d\udcac Comments": 364,
+        "\ud83d\udd04 Shares": 231
+      }
+    },
+    {
+      "content_type": "Story",
+      "theme": "User Success Stories",
+      "suggested_elements": [
+        "Include custom hashtags",
+        "Feature product demo",
+        "Add call-to-action",
+        "Incorporate sound effects"
+      ],
+      "optimal_posting_time": 20,
+      "predicted_impact": 8.5,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 3768,
+        "\ud83d\udcac Comments": 383,
+        "\ud83d\udd04 Shares": 64
+      }
+    },
+    {
+      "content_type": "Carousel",
+      "theme": "Expert Interview",
+      "suggested_elements": [
+        "Include trending hashtags",
+        "Feature team member",
+        "Add call-to-action",
+        "Incorporate sound effects"
+      ],
+      "optimal_posting_time": 8,
+      "predicted_impact": 8.92,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 3014,
+        "\ud83d\udcac Comments": 378,
+        "\ud83d\udd04 Shares": 120
+      }
+    },
+    {
+      "content_type": "Reel",
+      "theme": "Industry Insights",
+      "suggested_elements": [
+        "Include trending hashtags",
+        "Feature customer testimonial",
+        "Add question",
+        "Incorporate voice over"
+      ],
+      "optimal_posting_time": 12,
+      "predicted_impact": 7.58,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 1462,
+        "\ud83d\udcac Comments": 287,
+        "\ud83d\udd04 Shares": 69
+      }
+    }
+  ],
+  "Twitter": [
+    {
+      "content_type": "Poll",
+      "theme": "Industry Insights",
+      "suggested_elements": [
+        "Include custom hashtags",
+        "Feature customer testimonial",
+        "Add call-to-action",
+        "Incorporate voice over"
+      ],
+      "optimal_posting_time": 10,
+      "predicted_impact": 8.67,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 1065,
+        "\ud83d\udcac Comments": 388,
+        "\ud83d\udd04 Shares": 171
+      }
+    },
+    {
+      "content_type": "Thread",
+      "theme": "User Success Stories",
+      "suggested_elements": [
+        "Include branded hashtags",
+        "Feature customer testimonial",
+        "Add poll",
+        "Incorporate voice over"
+      ],
+      "optimal_posting_time": 8,
+      "predicted_impact": 8.45,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 3927,
+        "\ud83d\udcac Comments": 202,
+        "\ud83d\udd04 Shares": 197
+      }
+    },
+    {
+      "content_type": "Poll",
+      "theme": "User Success Stories",
+      "suggested_elements": [
+        "Include custom hashtags",
+        "Feature team member",
+        "Add question",
+        "Incorporate sound effects"
+      ],
+      "optimal_posting_time": 11,
+      "predicted_impact": 8.11,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 2544,
+        "\ud83d\udcac Comments": 110,
+        "\ud83d\udd04 Shares": 192
+      }
+    },
+    {
+      "content_type": "Poll",
+      "theme": "Innovation Spotlight",
+      "suggested_elements": [
+        "Include trending hashtags",
+        "Feature customer testimonial",
+        "Add call-to-action",
+        "Incorporate voice over"
+      ],
+      "optimal_posting_time": 17,
+      "predicted_impact": 7.9,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 3887,
+        "\ud83d\udcac Comments": 250,
+        "\ud83d\udd04 Shares": 185
+      }
+    }
+  ],
+  "TikTok": [
+    {
+      "content_type": "Challenge",
+      "theme": "Company Culture",
+      "suggested_elements": [
+        "Include trending hashtags",
+        "Feature customer testimonial",
+        "Add question",
+        "Incorporate music"
+      ],
+      "optimal_posting_time": 11,
+      "predicted_impact": 8.12,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 4183,
+        "\ud83d\udcac Comments": 200,
+        "\ud83d\udd04 Shares": 247
+      }
+    },
+    {
+      "content_type": "Duet",
+      "theme": "Innovation Spotlight",
+      "suggested_elements": [
+        "Include trending hashtags",
+        "Feature product demo",
+        "Add call-to-action",
+        "Incorporate sound effects"
+      ],
+      "optimal_posting_time": 18,
+      "predicted_impact": 8.45,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 3540,
+        "\ud83d\udcac Comments": 298,
+        "\ud83d\udd04 Shares": 136
+      }
+    },
+    {
+      "content_type": "Duet",
+      "theme": "Trending Topics",
+      "suggested_elements": [
+        "Include branded hashtags",
+        "Feature product demo",
+        "Add question",
+        "Incorporate sound effects"
+      ],
+      "optimal_posting_time": 13,
+      "predicted_impact": 8.03,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 2598,
+        "\ud83d\udcac Comments": 241,
+        "\ud83d\udd04 Shares": 215
+      }
+    },
+    {
+      "content_type": "Short-form Video",
+      "theme": "How-to Guide",
+      "suggested_elements": [
+        "Include custom hashtags",
+        "Feature product demo",
+        "Add poll",
+        "Incorporate voice over"
+      ],
+      "optimal_posting_time": 19,
+      "predicted_impact": 7.98,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 1338,
+        "\ud83d\udcac Comments": 162,
+        "\ud83d\udd04 Shares": 97
+      }
+    },
+    {
+      "content_type": "Short-form Video",
+      "theme": "User Success Stories",
+      "suggested_elements": [
+        "Include trending hashtags",
+        "Feature product demo",
+        "Add poll",
+        "Incorporate voice over"
+      ],
+      "optimal_posting_time": 16,
+      "predicted_impact": 7.88,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 4913,
+        "\ud83d\udcac Comments": 407,
+        "\ud83d\udd04 Shares": 226
+      }
+    }
+  ],
+  "YouTube": [
+    {
+      "content_type": "Shorts",
+      "theme": "Innovation Spotlight",
+      "suggested_elements": [
+        "Include branded hashtags",
+        "Feature customer testimonial",
+        "Add call-to-action",
+        "Incorporate music"
+      ],
+      "optimal_posting_time": 17,
+      "predicted_impact": 8.55,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 1962,
+        "\ud83d\udcac Comments": 399,
+        "\ud83d\udd04 Shares": 138
+      }
+    },
+    {
+      "content_type": "Shorts",
+      "theme": "Company Culture",
+      "suggested_elements": [
+        "Include branded hashtags",
+        "Feature product demo",
+        "Add call-to-action",
+        "Incorporate voice over"
+      ],
+      "optimal_posting_time": 19,
+      "predicted_impact": 8.5,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 3572,
+        "\ud83d\udcac Comments": 461,
+        "\ud83d\udd04 Shares": 225
+      }
+    },
+    {
+      "content_type": "Shorts",
+      "theme": "Expert Interview",
+      "suggested_elements": [
+        "Include branded hashtags",
+        "Feature customer testimonial",
+        "Add call-to-action",
+        "Incorporate sound effects"
+      ],
+      "optimal_posting_time": 9,
+      "predicted_impact": 7.91,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 1351,
+        "\ud83d\udcac Comments": 203,
+        "\ud83d\udd04 Shares": 159
+      }
+    },
+    {
+      "content_type": "Series",
+      "theme": "Expert Interview",
+      "suggested_elements": [
+        "Include custom hashtags",
+        "Feature product demo",
+        "Add call-to-action",
+        "Incorporate music"
+      ],
+      "optimal_posting_time": 13,
+      "predicted_impact": 8.59,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 3189,
+        "\ud83d\udcac Comments": 260,
+        "\ud83d\udd04 Shares": 248
+      }
+    },
+    {
+      "content_type": "Live Stream",
+      "theme": "How-to Guide",
+      "suggested_elements": [
+        "Include trending hashtags",
+        "Feature product demo",
+        "Add poll",
+        "Incorporate voice over"
+      ],
+      "optimal_posting_time": 13,
+      "predicted_impact": 8.15,
+      "target_reactions": {
+        "\ud83d\udc4d Likes": 3174,
+        "\ud83d\udcac Comments": 395,
+        "\ud83d\udd04 Shares": 182
+      }
+    }
+  ]
+}
