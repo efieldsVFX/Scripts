@@ -183,11 +183,11 @@ mha_batch_importer.run()
 
 ## Documentation
 
-For detailed documentation on implementation, customization, and troubleshooting, visit our [Wiki](link-to-wiki).
+For detailed documentation on implementation, customization, and troubleshooting, please refer to the inline code documentation.
 
-## Support
+## Authors
 
-For technical support and feature requests, please use our [Issue Tracker](link-to-issues).
+- Eric Fields (efieldsvfx@gmail.com)
 
 ## License
 

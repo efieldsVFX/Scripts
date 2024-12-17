@@ -89,6 +89,39 @@ logging:
   format: "%(asctime)s - %(levelname)s - %(message)s"
 ```
 
+## 📦 Packaging with PyInstaller
+
+### Prerequisites
+- PyInstaller (`pip install pyinstaller`)
+- All dependencies installed (`pip install -r requirements.txt`)
+
+### Building the Executable
+1. Navigate to the engine_tools directory:
+```bash
+cd ProductionScripts/engine_tools
+```
+2. Run PyInstaller with the following command:
+```bash
+pyinstaller --name="UnrealLauncher" --windowed --icon=resources/icon.ico --add-data="resources/*;resources/" launcher.py
+```
+### Build Options Explained
+- `--name`: Specifies the output executable name
+- `--windowed`: Creates a Windows executable without console window
+- `--icon`: Sets the application icon
+- `--add-data`: Includes resource files in the executable
+
+The packaged executable will be created in the `dist/UnrealLauncher` directory.
+
+### Verifying the Build
+1. Navigate to `dist/UnrealLauncher`
+2. Run `UnrealLauncher.exe`
+3. Verify all functionality works as expected
+
+### Troubleshooting
+- If resources are not found, ensure the `resource_path()` function is used correctly
+- For missing dependencies, check the generated `warn-launcher.txt` file
+- Run with console to see error messages: Remove `--windowed` flag during testing
+
 ## 🎯 Usage Examples
 
 ### Basic Project Launch

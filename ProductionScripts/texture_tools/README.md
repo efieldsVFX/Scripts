@@ -47,3 +47,6 @@ def register(core):
 - Expandable to support additional texture formats
 - Potential for distributed processing across render farm
 - Integration with asset versioning systems
+
+## Developer
+Developed by Eric Fields (efieldsvfx@gmail.com)

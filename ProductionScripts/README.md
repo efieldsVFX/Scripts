@@ -99,5 +99,8 @@ graph LR
 ## 📝 License
 MIT License - See LICENSE file for details
 
+## 👨‍💻 Developer
+Developed by Eric Fields (efieldsvfx@gmail.com)
+
 ## 📧 Contact
 For questions or support, please contact: efieldsvfx@gmail.com

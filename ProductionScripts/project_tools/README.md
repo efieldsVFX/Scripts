@@ -95,3 +95,6 @@ These tools are designed to seamlessly integrate into existing VFX pipelines:
 - Optimized database queries for task management
 - Responsive GUI even with complex operations
 - Memory-efficient task tree handling
+
+## Developer
+Developed by Eric Fields (efieldsvfx@gmail.com)
