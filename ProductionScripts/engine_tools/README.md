@@ -11,8 +11,30 @@ Advanced toolset for seamless integration of Unreal Engine within professional V
 ### 🎮 Unreal Engine Launcher
 A sophisticated PyQt5-based launcher application that bridges Unreal Engine with production tracking and asset management systems.
 
+![Unreal Engine Launcher Interface](docs/images/launcher_interface.png)
+
+#### Interface Overview
+1. **Project Root Selection**
+   - Browse or directly input your Unreal Projects folder
+   - Smart path validation and auto-completion
+   - Clear visual feedback with example paths
+
+2. **Project Selection**
+   - Dynamic project list with real-time filtering
+   - Intelligent project detection and validation
+   - Support for multiple project locations
+
+3. **Launch Controls**
+   - Progress tracking with status indicators
+   - Clear visual feedback during launch
+   - Integrated error handling and reporting
+
 #### Key Features
-- **Smart Version Detection**: Automatically detects and validates Unreal Engine versions
+- **Smart Project Management**:
+  - Visual project folder selection
+  - Intelligent project detection and filtering
+  - Progress tracking with status indicators
+  - Clean, modern dark theme interface
 - **Project Management**:
   - Multi-project support with intelligent filtering
   - Automated project validation and health checks

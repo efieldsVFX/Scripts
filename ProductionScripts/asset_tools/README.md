@@ -7,30 +7,102 @@ A sophisticated asset management toolkit designed for high-end VFX production pi
 
 ### Asset Creator (`asset_creator.py`)
 An advanced asset management system featuring:
-- **Modern Qt-based GUI** with professional dark theme
-- **FTrack Integration**
-  - Automated asset registration and version tracking
-  - Project hierarchy management
-  - Asset metadata synchronization
-- **Unreal Engine Integration**
-  - Standardized asset structure creation
-  - Automated content directory setup
-  - Blueprint template generation
-- **Prism Pipeline Integration**
-  - Workflow automation
-  - Asset versioning system
-  - Production tracking
+
+![Asset Creator UI](docs/images/asset_creator.png)
+
+#### Interface Features
+- **Clean, Modern Design**:
+  - Professional dark theme interface
+  - Intuitive form layout
+  - Clear visual hierarchy
+
+- **Smart Input Controls**:
+  - Project dropdown with dynamic loading
+  - Asset type selection with predefined categories
+  - Validated asset name input
+  - Pipeline integration toggles
+
+- **Pipeline Integration**:
+  - Seamless Unreal Engine workflow
+  - Prism Pipeline connectivity
+  - Multi-pipeline support
+
+The Asset Creator provides a streamlined interface for creating and managing assets across multiple pipeline systems, ensuring consistency and efficiency in asset creation workflows.
+
+#### Technical Implementation
+```python
+# Example Asset Creation
+asset_creator = AssetCreator(
+    project="ProjectName",
+    asset_type="Character",
+    pipeline_options={
+        "unreal": True,
+        "prism": True
+    }
+)
+```
 
 ### Material Creator (`material_creator.py`)
-A sophisticated material management system providing:
-- **Direct Unreal Engine Integration**
-  - Real-time material instance creation
-  - Parameter management and automation
-  - Texture set organization
-- **Production-ready Features**
-  - Batch processing capabilities
-  - Template-based workflows
-  - Asset registry integration
+A sophisticated material management system integrated with Unreal Engine for automated material instance creation and management. This tool streamlines the process of creating material instances from texture sets.
+
+#### Key Features
+- **Smart Texture Set Detection**:
+  - Automatically identifies texture sets without material instances
+  - Intelligent parsing of texture naming conventions
+  - Support for various texture types (BaseColor, Normal, etc.)
+
+- **Hierarchical Asset Browser**:
+  - Tree-based selection interface
+  - Multi-select capability for batch processing
+  - Organized by Descriptor/Asset Build/Object structure
+
+- **Unreal Engine Integration**:
+  - Direct integration with Unreal's Asset Registry
+  - Automated material instance path generation
+  - Batch material instance creation
+  - Asset browser synchronization
+
+#### User Interface Workflow
+The Material Creator provides an intuitive, step-by-step interface for creating material instances:
+
+1. **Asset Selection**
+   ![Asset Selection](docs/images/asset_selection.png)
+   - Hierarchical tree view of assets
+   - Organized by Environment/Asset/Object structure
+   - Multi-select support for batch operations
+
+2. **Texture Set Selection**
+   ![Texture Set Selection](docs/images/texture_selection.png)
+   - Clear categorization by Descriptor, Asset Build, and Object
+   - Intelligent filtering of available texture sets
+   - Preview of selected items before creation
+
+3. **Import Confirmation**
+   ![Import Confirmation](docs/images/import_confirmation.png)
+   - Review of source and destination paths
+   - Clear display of texture set mappings
+   - Final validation before material creation
+
+4. **Material Editor Integration**
+   ![Material Editor](docs/images/material_editor.png)
+   - Direct integration with Unreal's Material Editor
+   - Automatic parameter setup
+   - Real-time preview of created materials
+
+Each step provides clear visual feedback and maintains a consistent dark theme aligned with Unreal Engine's interface design.
+
+#### Technical Implementation
+```python
+# Example Usage in Unreal Engine
+material_creator = MaterialInstancePluginClass()
+material_creator.get_texture_sets()  # Finds textures without material instances
+material_creator.select_and_launch_batch_material_maker(selected_sets)
+```
+
+#### Workflow Integration
+- Seamlessly integrates with Unreal Editor's menu system
+- Supports both standalone and pipeline-integrated workflows
+- Maintains consistent material instance naming and folder structure
 
 ## Technical Architecture
 
@@ -69,15 +141,15 @@ prism_manager.setup_asset(
 ```
 
 ## Key Features
-- **Automated Workflow Integration**
+- **Automated Workflow Integration**:
   - Cross-platform asset synchronization
   - Version control management
   - Production tracking
-- **Standardized Asset Management**
+- **Standardized Asset Management**:
   - Consistent naming conventions
   - Structured folder hierarchies
   - Template-based creation
-- **Quality Control**
+- **Quality Control**:
   - Automated validation checks
   - Error logging and reporting
   - Asset integrity verification
@@ -100,7 +172,7 @@ The Asset Tools Suite serves as a crucial bridge between:
 ## Production Benefits
 - **50% Reduction** in asset setup time
 - **Standardized Workflows** across departments
-- **Real-time Production Tracking**
+- **Real-time Production Tracking**:
 - **Error Prevention** through automation
 - **Seamless Integration** with existing pipelines
 
