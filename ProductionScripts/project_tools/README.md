@@ -12,7 +12,6 @@ A powerful GUI-based utility for initializing and configuring new projects with 
 
 #### Key Features
 - **Project Management Interface**
-  ![UI Example](docs/images/ui_example.png)
   - Automated project structure creation
   - Direct ftrack integration
   - Visual configuration interface
@@ -43,6 +42,40 @@ An advanced task management system for handling complex task hierarchies and rel
 - **Data Validation**: Custom validation system with TaskMoverException handling
 - **Structure Preservation**: Recursive algorithms for maintaining task relationships
 - **Timeline Handling**: Sophisticated date adjustment algorithms
+
+### Asset Creator (`asset_creator.py`)
+
+An advanced asset management system for creating and organizing production assets across multiple pipeline systems.
+
+#### Key Features
+- **Asset Management Interface**
+  - Professional dark theme interface
+  - Intuitive form layout
+  - Smart input controls
+  - Asset preview and version tracking
+
+- **Pipeline Integration**
+  - Seamless Unreal Engine workflow
+  - Prism Pipeline connectivity
+  - Multi-pipeline support
+  - Project structure standardization
+
+- **Smart Asset Organization**
+  - Automated folder structure creation
+  - Asset type categorization
+  - Version control integration
+  - Thumbnail generation
+
+#### Technical Implementation
+- **Framework**: PyQt5/PySide2 for GUI
+- **Pipeline APIs**: 
+  - Unreal Engine integration
+  - Prism Pipeline connectivity
+  - Version control system hooks
+- **Asset Management**: 
+  - Standardized naming conventions
+  - Automated metadata handling
+  - Asset relationship tracking
 
 ## Technologies Used
 

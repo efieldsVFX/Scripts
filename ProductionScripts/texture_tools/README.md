@@ -13,7 +13,6 @@ An advanced asset management system featuring:
 
 #### Interface Features
 - **Asset Management Interface**
-  ![UI Example](docs/images/ui_example.png)
   - Professional dark theme interface
   - Intuitive form layout
   - Smart input controls
@@ -49,70 +48,70 @@ asset_creator = AssetCreator(
 )
 ```
 
-### Material Creator (`material_creator.py`)
-A sophisticated material management system integrated with Unreal Engine for automated material instance creation and management. This tool streamlines the process of creating material instances from texture sets.
+### Texture Importer (`texture_import.py`)
+
+A multi-threaded texture importing system for Unreal Engine with a sophisticated GUI interface.
 
 #### Key Features
-- **Smart Texture Set Detection**:
-  - Automatically identifies texture sets without material instances
-  - Intelligent parsing of texture naming conventions
-  - Support for various texture types (BaseColor, Normal, etc.)
-
-- **Hierarchical Asset Browser**:
-  - Tree-based selection interface
-  - Multi-select capability for batch processing
-  - Organized by Descriptor/Asset Build/Object structure
-
-- **Unreal Engine Integration**:
-  - Direct integration with Unreal's Asset Registry
-  - Automated material instance path generation
-  - Batch material instance creation
-  - Asset browser synchronization
-
-#### User Interface Workflow
-The Material Creator provides an intuitive, step-by-step interface for creating material instances:
-
-1. **Asset Selection**
-   ![Asset Selection](docs/images/asset_selection.png)
-   - Hierarchical tree view of assets
-   - Organized by Environment/Asset/Object structure
-   - Multi-select support for batch operations
-
-2. **Texture Set Selection**
-   ![Texture Set Selection](docs/images/texture_selection.png)
-   - Clear categorization by Descriptor, Asset Build, and Object
-   - Intelligent filtering of available texture sets
-   - Preview of selected items before creation
-
-3. **Import Confirmation**
-   ![Import Confirmation](docs/images/import_confirmation.png)
-   - Review of source and destination paths
-   - Clear display of texture set mappings
-   - Final validation before material creation
-
-4. **Material Editor Integration**
-   ![Material Editor](docs/images/material_editor.png)
-   - Direct integration with Unreal's Material Editor
-   - Automatic parameter setup
-   - Real-time preview of created materials
-
-Each step provides clear visual feedback and maintains a consistent dark theme aligned with Unreal Engine's interface design.
+- **Multi-threaded Import**: Thread-safe texture importing with progress tracking
+- **Batch Processing**: Efficient handling of large texture sets
+- **Smart Folder Management**: Automatic folder creation and organization
+- **GUI Integration**: 
+  - Progress tracking dialog
+  - Asset selection interface
+  - Confirmation dialogs for large imports
+- **Error Handling**: Comprehensive logging and error management
+- **Pipeline Integration**: 
+  - Unreal Engine compatibility
+  - Support for various texture formats
+  - Material instance checking
 
 #### Technical Implementation
-```python
-# Example Usage in Unreal Engine
-material_creator = MaterialInstancePluginClass()
-material_creator.get_texture_sets()  # Finds textures without material instances
-material_creator.select_and_launch_batch_material_maker(selected_sets)
-```
+- **Threading**: Uses QThread and ThreadPoolExecutor for concurrent operations
+- **GUI Framework**: PySide2 for responsive interface
+- **Version**: v1.2.1
+- **Safety Features**: 
+  - Thread-safe operations with mutex locks
+  - Batch processing for memory management
+  - Prerequisite checking before imports
 
-![Material Implementation Example](docs/images/MatImp_.png)
-![Material Implementation Example 2](docs/images/MatImp_2.png)
+### Material Creator (`material_creator.py`)
 
-#### Workflow Integration
-- Seamlessly integrates with Unreal Editor's menu system
-- Supports both standalone and pipeline-integrated workflows
-- Maintains consistent material instance naming and folder structure
+A sophisticated Unreal Engine plugin for automated material instance creation and management, featuring a professional GUI interface.
+
+#### Key Features
+- **Material Instance Creation**
+  - Batch creation of material instances from texture sets
+  - Hierarchical texture set selection interface
+  - Smart texture set organization
+  
+- **Unreal Engine Integration**
+  - Direct integration with Unreal Editor menu system
+  - Custom toolbar menu entries
+  - Python-based command execution
+  
+- **User Interface**
+  - Professional tree-based selection dialog
+  - Multi-selection support
+  - Dynamic column width adjustment
+  - Resizable and maximizable windows
+  
+- **Pipeline Integration**
+  - Project asset structure awareness
+  - Logging system for operation tracking
+  - Error handling and validation
+
+#### Technical Implementation
+- **Framework**: QtPy for cross-platform GUI compatibility
+- **Version**: v1.0.0
+- **Unreal Integration**:
+  - Custom menu system integration
+  - Tool menu entry management
+  - Python command execution support
+- **Asset Management**:
+  - Hierarchical data structure
+  - Texture set organization
+  - Validation system for selections
 
 ## Technical Architecture
 
