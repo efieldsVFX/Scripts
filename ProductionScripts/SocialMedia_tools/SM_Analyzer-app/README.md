@@ -4,29 +4,34 @@ A powerful social media analytics tool designed for VFX pipeline integration, en
 
 **Author**: Eric Fields (efieldsvfx@gmail.com)
 
-![SM_Analyzer Dashboard](docs/images/dashboard.png)
-
 ## 🚀 Key Features
 
+![Analytics Dashboard](docs/images/SM_Analyzer_App (1).png)
+
 - **Multi-Platform Analysis**: Seamlessly collect and analyze data from multiple social media platforms:
+  ![Platform Analysis](docs/images/SM_Analyzer_App (2).png)
   - Twitter
   - Instagram
   - Reddit
   - TikTok
 
 - **Advanced Analytics Engine**:
+  ![Analytics Engine](docs/images/SM_Analyzer_App (3).png)
   - Sentiment Analysis using VADER, Transformers, or TextBlob
   - Topic Modeling with LDA, NMF, or BERTopic
   - Engagement Metrics Tracking
   - Content Performance Analytics
 
 - **Pipeline Integration**:
+  ![Pipeline Integration](docs/images/SM_Analyzer_App (4).png)
   - Easy integration with existing VFX pipelines
   - Automated data collection and analysis
   - Real-time monitoring capabilities
   - Export data in pipeline-friendly formats
 
 - **Visualization Suite**:
+  ![Visualization Tools](docs/images/SM_Analyzer_App (5).png)
+  ![Report Generation](docs/images/SM_Analyzer_App (6).png)
   - Interactive sentiment distribution plots
   - Engagement timeline analysis
   - Topic visualization

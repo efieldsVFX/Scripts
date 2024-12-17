@@ -16,7 +16,7 @@ logger.setLevel(logging.WARNING)
 # Defining constants
 name = "MaterialInstancePlugin"
 classname = "MaterialInstancePluginClass"
-base_path = r"\\publicstore\CG_Team_NAS\Projects\TWINKLETWINKLE_MAIN\01_ASSETS\Internal"
+base_path = r"\\NAS\Projects\Test\01_ASSETS\Internal"
 
 sys.path.append(r"C:\Program Files\Epic Games\UE_5.4\Engine\Binaries\ThirdParty\Python3\Win64\Lib\site-packages")
 

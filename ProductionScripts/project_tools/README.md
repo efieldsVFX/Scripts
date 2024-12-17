@@ -8,10 +8,14 @@ A sophisticated collection of production pipeline tools designed for efficient p
 
 A powerful GUI-based utility for initializing and configuring new projects with automated project management integration.
 
+![Project Creator Interface](docs/images/ProjectCreator.png)
+
 #### Key Features
-- **Automated Project Structure Creation**: Generates standardized folder hierarchies for new projects
-- **ftrack Integration**: Direct project creation and configuration in ftrack
-- **Visual Project Configuration**: User-friendly GUI built with PyQt5
+- **Project Management Interface**
+  ![UI Example](docs/images/ui_example.png)
+  - Automated project structure creation
+  - Direct ftrack integration
+  - Visual configuration interface
 - **Thumbnail Management**: Built-in support for project thumbnail handling using PIL
 - **Robust Error Handling**: Comprehensive logging and error management system
 

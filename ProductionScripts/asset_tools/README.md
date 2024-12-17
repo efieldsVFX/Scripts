@@ -8,19 +8,26 @@ A sophisticated asset management toolkit designed for high-end VFX production pi
 ### Asset Creator (`asset_creator.py`)
 An advanced asset management system featuring:
 
-![Asset Creator UI](docs/images/asset_creator.png)
+![Asset Implementation Example 1](docs/images/AssetImp_1.png)
+![Asset Implementation Example 2](docs/images/AssetImp_2.png)
 
 #### Interface Features
-- **Clean, Modern Design**:
+- **Asset Management Interface**
+  ![UI Example](docs/images/ui_example.png)
   - Professional dark theme interface
   - Intuitive form layout
-  - Clear visual hierarchy
+  - Smart input controls
+  - Asset preview and version tracking
 
-- **Smart Input Controls**:
+- **Smart Input Controls**
   - Project dropdown with dynamic loading
   - Asset type selection with predefined categories
-  - Validated asset name input
-  - Pipeline integration toggles
+  - Smart path generation
+
+- **Asset Preview**
+  - Real-time thumbnail generation
+  - Quick view of asset details
+  - Version history display
 
 - **Pipeline Integration**:
   - Seamless Unreal Engine workflow
@@ -98,6 +105,9 @@ material_creator = MaterialInstancePluginClass()
 material_creator.get_texture_sets()  # Finds textures without material instances
 material_creator.select_and_launch_batch_material_maker(selected_sets)
 ```
+
+![Material Implementation Example](docs/images/MatImp_.png)
+![Material Implementation Example 2](docs/images/MatImp_2.png)
 
 #### Workflow Integration
 - Seamlessly integrates with Unreal Editor's menu system

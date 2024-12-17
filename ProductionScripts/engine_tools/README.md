@@ -11,7 +11,7 @@ Advanced toolset for seamless integration of Unreal Engine within professional V
 ### 🎮 Unreal Engine Launcher
 A sophisticated PyQt5-based launcher application that bridges Unreal Engine with production tracking and asset management systems.
 
-![Unreal Engine Launcher Interface](docs/images/launcher_interface.png)
+![Project Launcher Interface](docs/images/Project_launcher.png)
 
 #### Interface Overview
 1. **Project Root Selection**
@@ -47,6 +47,16 @@ A sophisticated PyQt5-based launcher application that bridges Unreal Engine with
   - Progress tracking with detailed logging
   - Permission verification and error handling
   - Persistent settings management
+
+### Launcher Functionality
+The launcher provides several core functionalities:
+- **Project Detection**: Automatically scans and validates Unreal Engine project directories
+- **Version Management**: Reads project metadata to ensure correct engine version compatibility
+- **Resource Management**: Uses PyInstaller's resource system to handle bundled assets
+- **Exception Handling**: Comprehensive error tracking and user feedback
+- **Settings Persistence**: Saves user preferences and recent project paths
+- **Progress Tracking**: Real-time feedback during project launch
+- **Logging System**: Detailed timestamped logging for debugging
 
 ## 🔌 Pipeline Integrations
 
@@ -109,6 +119,69 @@ pipeline_integration:
 logging:
   level: "INFO"
   format: "%(asctime)s - %(levelname)s - %(message)s"
+```
+
+## 📦 Building and Deployment
+
+### PyInstaller Setup
+The launcher can be compiled into a standalone executable using PyInstaller. This process bundles all necessary Python dependencies and resources into a single distributable package.
+
+#### Requirements
+```
+PyQt5==5.15.9
+PyInstaller==5.13.0
+```
+
+#### Using the Spec File
+The provided `launcher.spec` file contains preconfigured PyInstaller settings optimized for the Unreal Launcher:
+
+1. **Build with Spec File**:
+   ```bash
+   pyinstaller launcher.spec
+   ```
+
+The spec file includes:
+- Resource bundling configuration
+- Icon settings
+- Windowed application mode
+- UPX compression
+- Proper binary collection
+
+This method is preferred over direct command-line options as it ensures consistent builds with all necessary configurations.
+
+#### Building Steps
+1. **Install Build Dependencies**:
+   ```bash
+   pip install pyinstaller
+   pip install -r requirements.txt
+   ```
+
+2. **Create Executable**:
+   ```bash
+   pyinstaller --name="UnrealLauncher" ^
+               --windowed ^
+               --icon=resources/icon.ico ^
+               --add-data="resources;resources" ^
+               launcher.py
+   ```
+
+3. **Build Options**:
+   - `--windowed`: Creates a windowed application without console
+   - `--icon`: Specifies the application icon
+   - `--add-data`: Includes additional resources
+   - `--onefile`: (Optional) Creates a single executable file
+
+The compiled executable will be available in the `dist` directory.
+
+### Distribution Structure
+```
+UnrealLauncher/
+├── UnrealLauncher.exe
+├── resources/
+│   ├── icon.ico
+│   └── themes/
+└── _internal/
+    └── [PyInstaller dependencies]
 ```
 
 ## 📦 Packaging with PyInstaller
