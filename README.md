@@ -8,7 +8,6 @@ The `ProductionScripts` directory contains the following tool collections:
 
 - **Metahuman_tools**: Scripts and utilities for working with Metahuman assets
 - **SocialMedia_tools**: Tools for social media analysis and management
-- **asset_tools**: Utilities for asset management and processing
 - **engine_tools**: Scripts related to engine-specific operations
 - **project_tools**: General project management and workflow tools
 - **texture_tools**: Scripts for texture processing and management
