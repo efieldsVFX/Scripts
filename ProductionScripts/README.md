@@ -94,37 +94,31 @@ graph LR
 This suite features professionally designed, modern user interfaces across all tools:
 
 ### Project Tools
-![Project Setup UI](docs/images/project_setup.png)
 - Modern Qt-based project configuration interface
 - Visual task management system
 - Interactive project structure viewer
 
 ### Asset Tools
-![Asset Manager UI](docs/images/asset_manager.png)
 - Intuitive asset creation and management interface
 - Real-time status updates
 - Visual asset hierarchy viewer
 
 ### Texture Tools
-![Texture Pipeline UI](docs/images/texture_pipeline.png)
 - Multi-threaded processing interface
 - Progress visualization
 - Batch operation management
 
 ### MetaHuman Tools
-![MHA Batch UI](docs/images/mha_batch.png)
 - Sophisticated animation import interface
 - Real-time progress tracking
 - Visual error reporting
 
 ### Engine Tools
-![Engine Launcher UI](docs/images/engine_launcher.png)
 - Smart project management interface
 - Version control integration
 - Status monitoring dashboard
 
 ### Social Media Tools
-![Analytics Dashboard](docs/images/analytics_dashboard.png)
 - Interactive analytics dashboard
 - Real-time data visualization
 - Multi-platform monitoring interface

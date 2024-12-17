@@ -25,24 +25,6 @@ A powerful GUI-based utility for initializing and configuring new projects with 
 - **Configuration**: JSON-based project templates and settings
 - **Logging**: Structured logging system for debugging and monitoring
 
-### Task Manager Tool (`task_manager.py`)
-
-An advanced task management system for handling complex task hierarchies and relationships across projects.
-
-#### Key Features
-- **Visual Task Management**: Tree-based visualization of project structures
-- **Intelligent Task Movement**: Preserves task hierarchies and relationships during transfers
-- **Timeline Management**: Automatic date adjustment for task movements
-- **Data Integrity**: Robust validation system for task operations
-- **Progress Tracking**: Real-time operation progress monitoring
-
-#### Technical Implementation
-- **UI Framework**: PyQt5 with QTreeWidget for hierarchy visualization
-- **Project Management**: Deep integration with ftrack API
-- **Data Validation**: Custom validation system with TaskMoverException handling
-- **Structure Preservation**: Recursive algorithms for maintaining task relationships
-- **Timeline Handling**: Sophisticated date adjustment algorithms
-
 ### Asset Creator (`asset_creator.py`)
 
 An advanced asset management system for creating and organizing production assets across multiple pipeline systems.
@@ -98,40 +80,22 @@ These tools are designed to seamlessly integrate into existing VFX pipelines:
 
 1. **Project Initialization**
    - Automated setup of new projects with standardized structures
-   - Integration with project management systems
+   - Integration with production tracking systems
    - Configuration of project-specific settings
 
-2. **Task Management**
-   - Complex task reorganization across projects
-   - Bulk task movements with relationship preservation
-   - Timeline management and adjustment
-
-## Technical Details
-
-### Architecture
-- **Modular Design**: Separate modules for project setup and task management
-- **Event-Driven**: Responsive GUI with real-time updates
-- **Data-Centric**: Strong focus on data integrity and validation
-
-### Error Handling
-- **Custom Exceptions**: Specialized error handling for different scenarios
-- **Logging System**: Comprehensive logging for debugging and monitoring
-- **User Feedback**: Clear error messages and status updates
-
-## Future Enhancements
-
-- Integration with additional project management systems
-- Extended support for custom project templates
-- Advanced task dependency visualization
-- Batch operations for multiple projects
-- Timeline optimization algorithms
+2. **Asset Management**
+   - Creation and organization of production assets
+   - Version control and tracking
+   - Pipeline status monitoring
 
 ## Performance Considerations
 
-- Efficient handling of large project structures
-- Optimized database queries for task management
-- Responsive GUI even with complex operations
-- Memory-efficient task tree handling
+- **Efficient Resource Usage**:
+  - Optimized file operations
+  - Smart caching mechanisms
+  - Memory-efficient operations
 
-## Developer
-Developed by Eric Fields (efieldsvfx@gmail.com)
+- **Scalability**:
+  - Efficient handling of large project structures
+  - Optimized database queries
+  - Responsive GUI even with complex operations
