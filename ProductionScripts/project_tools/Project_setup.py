@@ -1,27 +1,65 @@
 import sys
 import os
 import json
-import ftrack_api
 import logging
+import traceback
+from datetime import datetime
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PIL import Image
+import ftrack_api
 
-# Configure logging
+# Configure Logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    format="%(asctime)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
+# High DPI Scaling Fix
+QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
+QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps)
 
+# Global Exception Handler
+def handle_exception(exc_type, exc_value, exc_traceback):
+    error_details = "".join(traceback.format_exception(exc_type, exc_value, exc_traceback))
+    logger.error(f"Unhandled Exception:\n{error_details}")
+    QtWidgets.QMessageBox.critical(
+        None, "Critical Error", f"An unexpected error occurred:\n{exc_value}"
+    )
+    sys.exit(1)
+
+sys.excepthook = handle_exception
+
+# Utility Functions
 def load_config(config_path):
     try:
         with open(config_path, 'r') as config_file:
             return json.load(config_file)
     except Exception as e:
         logger.error(f"Error loading config: {e}")
-        return None
-
+        return {
+            "root_path": "C:/Fake/RootPath",
+            "ftrack": {
+                "server_url": "https://fake.ftrack.com",
+                "api_key": "fake_api_key",
+                "api_user": "fake_user"
+            },
+            "folder_structure": [
+                "00_Pipeline",
+                "01_ASSETS",
+                "02_SCENES"
+            ],
+            "pipeline_data": {
+                "globals": {
+                    "project_name": "FakeProject",
+                    "project_code": "FP001"
+                },
+                "prjManagement": {
+                    "ftrack_projectName": "FakeProject"
+                }
+            }
+        }
+        # NOTE: Replace this fake data with an actual 'config.json' file for production use.
 
 def save_config(config_path, config):
     try:
@@ -30,14 +68,17 @@ def save_config(config_path, config):
     except Exception as e:
         logger.error(f"Error saving config: {e}")
 
+# Core Logic
+def validate_inputs(project_name, project_code, start_date, end_date):
+    if not all([project_name, project_code, start_date, end_date]):
+        raise ValueError("All fields (name, code, dates) are required.")
 
-def create_ftrack_project(project_name, project_code, start_date, end_date,
-                          server_url, api_key, api_user):
+def create_ftrack_project(project_name, project_code, start_date, end_date, config):
     try:
         session = ftrack_api.Session(
-            server_url=server_url,
-            api_key=api_key,
-            api_user=api_user
+            server_url=config['server_url'],
+            api_key=config['api_key'],
+            api_user=config['api_user']
         )
         project = session.create('Project', {
             'name': project_name,
@@ -52,92 +93,6 @@ def create_ftrack_project(project_name, project_code, start_date, end_date,
         logger.error(f"Error creating Ftrack project: {e}")
         return None, None
 
-
-def create_ftrack_entities(session, project_id, entities):
-    created_entities = {project_id: session.get('Project', project_id)}
-    asset_versions = []
-
-    try:
-        for entity in entities:
-            parent_id = (entity['parent_id'] if entity['parent_id']
-                         in created_entities else project_id)
-            parent = created_entities[parent_id]
-
-            existing_entity = session.query(
-                f"{entity['type']} where name is '{entity['name']}' "
-                f"and parent.id is '{parent['id']}'"
-            ).first()
-
-            if existing_entity:
-                logger.info(
-                    f"Entity '{entity['name']}' already exists with ID "
-                    f"{existing_entity['id']}. Using existing entity."
-                )
-                created_entity = existing_entity
-            else:
-                created_entity = session.create(entity['type'], {
-                    'name': entity['name'],
-                    'parent': parent
-                })
-                session.commit()
-                logger.info(
-                    f"Entity '{entity['name']}' created with ID "
-                    f"{created_entity['id']}"
-                )
-
-            created_entities[entity['name']] = created_entity
-
-            if entity['type'] == 'Asset':
-                asset_type = session.query(
-                    'AssetType where name is "Geometry"'
-                ).one()
-                asset = session.create('Asset', {
-                    'name': entity['name'],
-                    'type': asset_type,
-                    'parent': created_entity
-                })
-                session.commit()
-
-                default_task = session.query(
-                    f'Task where parent.id is "{project_id}"'
-                ).first()
-                if default_task:
-                    asset_version = session.create('AssetVersion', {
-                        'asset': asset,
-                        'task': default_task
-                    })
-                    session.commit()
-                    asset_versions.append(asset_version)
-                else:
-                    logger.warning(
-                        f"No default task found for project ID {project_id}. "
-                        "AssetVersion not created."
-                    )
-
-        return created_entities, asset_versions
-    except Exception as e:
-        logger.error(f"Error creating Ftrack entities: {e}")
-        return None, None
-
-
-def publish_component(session, asset_version, file_path,
-                      location_name='ftrack.server'):
-    try:
-        location = session.query(
-            f'Location where name is "{location_name}"'
-        ).one()
-        component = asset_version.create_component(
-            path=file_path,
-            data={'name': os.path.basename(file_path)},
-            location=location
-        )
-        session.commit()
-        return component
-    except Exception as e:
-        logger.error(f"Error publishing component: {e}")
-        return None
-
-
 def setup_folder_structure(project_path, structure):
     try:
         for folder in structure:
@@ -146,215 +101,306 @@ def setup_folder_structure(project_path, structure):
     except Exception as e:
         logger.error(f"Error setting up folder structure: {e}")
 
-
-def create_prism_project(root_path, project_name, project_code, config):
+def process_thumbnail(thumbnail_path, save_paths):
     try:
-        project_path = os.path.join(root_path, project_name)
-        os.makedirs(project_path, exist_ok=True)
-        setup_folder_structure(project_path, config['folder_structure'])
-        
-        pipeline_json_path = os.path.join(project_path, "00_Pipeline",
-                                           "pipeline.json")
-        with open(pipeline_json_path, 'w') as json_file:
-            pipeline_data = json.dumps(config['pipeline_data'], indent=4).replace(
-                '@project_code@', project_code
-            )
-            json_file.write(pipeline_data)
-        
-        logger.info(f"pipeline.json created at {pipeline_json_path}")
-        return project_path
+        image = Image.open(thumbnail_path) if thumbnail_path else Image.new('RGB', (512, 512), (200, 200, 200))
+        image.thumbnail((512, 512), Image.Resampling.LANCZOS)
+        for path in save_paths:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            image.save(path, "JPEG", quality=95)
+            logger.info(f"Thumbnail saved at {path}")
     except Exception as e:
-        logger.error(f"Error creating Prism project: {e}")
-        return None
+        logger.error(f"Error processing thumbnail: {e}")
 
-
-class ProjectSetupApp(QtWidgets.QWidget):
+# Main Application Class
+class ProjectSetupApp(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.config_file_path = 'config.json'
         self.config = load_config(self.config_file_path)
         if not self.config:
-            QtWidgets.QMessageBox.critical(self, 'Error',
-                                          'Failed to load configuration.')
+            QtWidgets.QMessageBox.critical(self, 'Error', 'Failed to load configuration.')
             sys.exit(1)
+        
+        # Set application style
+        self.setStyleSheet("""
+            QMainWindow, QWidget {
+                background-color: #2e3440;
+                color: #d8dee9;
+            }
+            QLabel {
+                color: #d8dee9;
+                font-size: 8pt;
+                padding: 0px;
+                margin: 0px;
+                background-color: transparent;
+            }
+            QGroupBox {
+                border: 1px solid #4c566a;
+                border-radius: 4px;
+                color: #d8dee9;
+                font-size: 8pt;
+                font-weight: bold;
+                margin-top: 8px;
+                padding-top: 8px;
+                background-color: #3b4252;
+            }
+            QGroupBox::title {
+                subcontrol-origin: margin;
+                left: 8px;
+                padding: 0 3px;
+                background-color: #3b4252;
+            }
+            QStatusBar {
+                background-color: #2e3440;
+                color: #d8dee9;
+                font-size: 8pt;
+                padding: 2px;
+            }
+            QMessageBox {
+                background-color: #2e3440;
+                color: #d8dee9;
+            }
+            QMessageBox QPushButton {
+                background-color: #5e81ac;
+                color: white;
+                padding: 3px 12px;
+                border-radius: 2px;
+                min-width: 60px;
+                font-size: 8pt;
+            }
+            QMessageBox QPushButton:hover {
+                background-color: #81a1c1;
+            }
+            QLineEdit {
+                background-color: #3b4252;
+                color: #d8dee9;
+                border: 1px solid #4c566a;
+                border-radius: 2px;
+                padding: 2px 4px;
+                height: 16px;
+                font-size: 8pt;
+            }
+            QLineEdit:focus {
+                border: 1px solid #5e81ac;
+            }
+            QTextEdit {
+                background-color: #2e3440;
+                color: #d8dee9;
+                border: 1px solid #4c566a;
+                border-radius: 2px;
+                font-family: 'Consolas', monospace;
+                font-size: 8pt;
+                padding: 2px;
+            }
+            QPushButton {
+                background-color: #4c566a;
+                color: #d8dee9;
+                border: none;
+                border-radius: 2px;
+                padding: 3px 12px;
+                font-size: 8pt;
+                height: 20px;
+            }
+            QPushButton:hover {
+                background-color: #5e81ac;
+            }
+            QPushButton:pressed {
+                background-color: #4c566a;
+            }
+        """)
+        
+        # Set window properties
+        self.setWindowTitle("Project Setup")
+        self.setMinimumSize(600, 500)
+        self.setWindowIcon(QtGui.QIcon(os.path.join(os.path.dirname(__file__), "icons", "logo.ico")))
+        
+        # Create central widget and main layout
+        self.central_widget = QtWidgets.QWidget()
+        self.setCentralWidget(self.central_widget)
+        self.main_layout = QtWidgets.QVBoxLayout(self.central_widget)
+        self.main_layout.setSpacing(4)
+        self.main_layout.setContentsMargins(8, 8, 8, 8)
+        
+        # Set application-wide font
+        self.font = QtGui.QFont("Segoe UI", 8)
+        QtWidgets.QApplication.setFont(self.font)
+        
+        # Initialize UI
         self.init_ui()
-        self.session = None
-        self.project = None
+        
+        # Create status bar
+        self.status_bar = QtWidgets.QStatusBar()
+        self.setStatusBar(self.status_bar)
+        self.status_bar.showMessage("Ready")
 
     def init_ui(self):
-        self.setWindowTitle('Project Setup')
+        # Title and Description
+        title_label = QtWidgets.QLabel("Project Setup Tool")
+        title_label.setStyleSheet("""
+            font-size: 12pt;
+            font-weight: bold;
+            color: #88c0d0;
+            padding-bottom: 4px;
+        """)
+        
+        desc_label = QtWidgets.QLabel(
+            "Create and configure new projects with standardized folder structure and Ftrack integration. "
+            "This tool helps maintain consistency across project setups by automating the creation of "
+            "required directories and initializing project tracking."
+        )
+        desc_label.setWordWrap(True)
+        desc_label.setStyleSheet("color: #d8dee9; padding-bottom: 8px;")
+        
+        # Add title and description to layout
+        self.main_layout.addWidget(title_label)
+        self.main_layout.addWidget(desc_label)
+        self.main_layout.addSpacing(8)
+        
+        # Create form group for inputs
+        form_group = QtWidgets.QGroupBox("Project Information")
+        form_layout = QtWidgets.QFormLayout(form_group)
+        form_layout.setSpacing(4)
+        form_layout.setContentsMargins(8, 8, 8, 8)
+        form_layout.setLabelAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
+        
+        # Input Widgets
+        self.project_name_input = QtWidgets.QLineEdit()
+        self.project_code_input = QtWidgets.QLineEdit()
+        self.start_date_input = QtWidgets.QLineEdit()
+        self.end_date_input = QtWidgets.QLineEdit()
+        
+        for input_widget in [self.project_name_input, self.project_code_input, 
+                           self.start_date_input, self.end_date_input]:
+            input_widget.setMinimumWidth(200)
+        
+        form_layout.addRow("Project Name:", self.project_name_input)
+        form_layout.addRow("Project Code:", self.project_code_input)
+        form_layout.addRow("Start Date:", self.start_date_input)
+        form_layout.addRow("End Date:", self.end_date_input)
+        
+        # Thumbnail section
+        thumbnail_group = QtWidgets.QGroupBox("Project Thumbnail")
+        thumbnail_layout = QtWidgets.QVBoxLayout(thumbnail_group)
+        thumbnail_layout.setSpacing(4)
+        thumbnail_layout.setContentsMargins(8, 8, 8, 8)
+        
+        self.thumbnail_label = QtWidgets.QLabel("No thumbnail selected")
+        self.thumbnail_button = self.create_button("Choose Thumbnail", self.choose_thumbnail)
+        
+        thumbnail_layout.addWidget(self.thumbnail_label)
+        thumbnail_layout.addWidget(self.thumbnail_button)
+        
+        # Log output section
+        log_group = QtWidgets.QGroupBox("Log Output")
+        log_layout = QtWidgets.QVBoxLayout(log_group)
+        log_layout.setSpacing(4)
+        log_layout.setContentsMargins(8, 8, 8, 8)
+        
+        self.log_window = QtWidgets.QTextEdit()
+        self.log_window.setReadOnly(True)
+        self.log_window.setMaximumHeight(100)
+        log_layout.addWidget(self.log_window)
+        
+        # Create project button
+        self.create_project_btn = self.create_button("Create Project", self.create_project)
+        self.create_project_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #5e81ac;
+                height: 24px;
+                font-weight: bold;
+            }
+        """)
+        
+        # Add all sections to main layout with spacing
+        self.main_layout.addWidget(form_group)
+        self.main_layout.addSpacing(4)
+        self.main_layout.addWidget(thumbnail_group)
+        self.main_layout.addSpacing(4)
+        self.main_layout.addWidget(log_group)
+        self.main_layout.addSpacing(8)
+        self.main_layout.addWidget(self.create_project_btn)
 
-        layout = QtWidgets.QVBoxLayout()
-
-        self.project_name_label = QtWidgets.QLabel('Project Name:')
-        self.project_name_input = QtWidgets.QLineEdit(self)
-
-        self.project_code_label = QtWidgets.QLabel('Project Code:')
-        self.project_code_input = QtWidgets.QLineEdit(self)
-
-        self.start_date_label = QtWidgets.QLabel('Start Date (YYYY-MM-DD):')
-        self.start_date_input = QtWidgets.QLineEdit(self)
-
-        self.end_date_label = QtWidgets.QLabel('End Date (YYYY-MM-DD):')
-        self.end_date_input = QtWidgets.QLineEdit(self)
-
-        self.thumbnail_label = QtWidgets.QLabel('Project Thumbnail:')
-        self.thumbnail_button = QtWidgets.QPushButton('Choose File')
-        self.thumbnail_button.clicked.connect(self.choose_thumbnail)
-        self.thumbnail_path = ''
-
-        self.create_button = QtWidgets.QPushButton('Create Project', self)
-        self.create_button.clicked.connect(self.create_project)
-
-        layout.addWidget(self.project_name_label)
-        layout.addWidget(self.project_name_input)
-        layout.addWidget(self.project_code_label)
-        layout.addWidget(self.project_code_input)
-        layout.addWidget(self.start_date_label)
-        layout.addWidget(self.start_date_input)
-        layout.addWidget(self.end_date_label)
-        layout.addWidget(self.end_date_input)
-        layout.addWidget(self.thumbnail_label)
-        layout.addWidget(self.thumbnail_button)
-        layout.addWidget(self.create_button)
-
-        self.setLayout(layout)
+    def create_button(self, label, func):
+        button = QtWidgets.QPushButton(label)
+        button.setStyleSheet("""
+            QPushButton {
+                background-color: #4c566a;
+                color: #d8dee9;
+                border: none;
+                border-radius: 2px;
+                padding: 3px 12px;
+                font-size: 8pt;
+                height: 20px;
+            }
+            QPushButton:hover {
+                background-color: #5e81ac;
+            }
+            QPushButton:pressed {
+                background-color: #4c566a;
+            }
+        """)
+        button.clicked.connect(func)
+        return button
 
     def choose_thumbnail(self):
         options = QtWidgets.QFileDialog.Options()
         file_path, _ = QtWidgets.QFileDialog.getOpenFileName(
-            self, 'Choose Thumbnail', '', 'Images (*.png *.jpg *.bmp)',
-            options=options
+            self, "Choose Thumbnail", "", 
+            "Images (*.png *.jpg *.jpeg)", options=options
         )
         if file_path:
+            self.thumbnail_label.setText(f"Selected: {os.path.basename(file_path)}")
             self.thumbnail_path = file_path
-            self.thumbnail_label.setText(f'Project Thumbnail: {file_path}')
+            self.status_bar.showMessage(f"Thumbnail selected: {os.path.basename(file_path)}")
 
     def create_project(self):
-        project_name = self.project_name_input.text()
-        project_code = self.project_code_input.text()
-        start_date = self.start_date_input.text()
-        end_date = self.end_date_input.text()
-
-        # Update config with project name and code
-        self.config['pipeline_data']['globals']['project_name'] = project_name
-        self.config['pipeline_data']['globals']['project_code'] = project_code
-        self.config['pipeline_data']['prjManagement']['ftrack_projectName'] = project_name
-        save_config(self.config_file_path, self.config)
-
-        root_path = self.config['root_path']
-        ftrack_server_url = self.config['ftrack']['server_url']
-        ftrack_api_key = self.config['ftrack']['api_key']
-        ftrack_api_user = self.config['ftrack']['api_user']
-
-        # Step 1: Create the project in Ftrack
-        self.project, self.session = create_ftrack_project(
-            project_name, project_code, start_date, end_date, ftrack_server_url,
-            ftrack_api_key, ftrack_api_user
-        )
-
-        if not self.project or not self.session:
-            QtWidgets.QMessageBox.critical(self, 'Error',
-                                            f'Failed to create Ftrack project.')
-            return
-
-        # Step 2: Upload the thumbnail to Ftrack
-        if self.thumbnail_path:
-            try:
-                server_location = self.session.query(
-                    'Location where name is "ftrack.server"'
-                ).one()
-                thumbnail_component = self.session.create_component(
-                    self.thumbnail_path,
-                    {'name': 'thumbnail'},
-                    location=server_location
-                )
-                self.project.create_thumbnail(self.thumbnail_path)
-                self.session.commit()
-
-                logger.info(f"Thumbnail uploaded: {self.thumbnail_path}")
-            except Exception as e:
-                logger.error(f"Error uploading thumbnail: {e}")
-
-        # Step 3: Create initial entities in Ftrack
-        initial_entities = self.config['initial_entities']
-        for entity in initial_entities:
-            if entity['parent_id'] == 'project_id':
-                entity['parent_id'] = self.project['id']
-
-        created_entities, asset_versions = create_ftrack_entities(
-            self.session, self.project["id"], initial_entities
-        )
-
-        if not created_entities:
-            QtWidgets.QMessageBox.critical(self, 'Error',
-                                          f'Failed to create initial Ftrack entities.')
-            return
-
-        logger.info("Created initial entities: %s", created_entities)
-
-        # Step 4: Set up the folder structure in Prism
-        project_path = create_prism_project(root_path, project_name,
-                                            project_code, self.config)
-
-        if not project_path:
-            QtWidgets.QMessageBox.critical(self, 'Error',
-                                            f'Failed to create Prism project.')
-            return
-
-        # Step 5: Convert and save the thumbnail as project.jpg in the 00_Pipeline folder
         try:
-            # Create default thumbnail if none provided
-            if not self.thumbnail_path:
-                # Create a default colored background
-                default_size = (512, 512)
-                default_color = (200, 200, 200)  # Light gray
-                default_image = Image.new('RGB', default_size, default_color)
-            else:
-                default_image = Image.open(self.thumbnail_path)
-                
-            # Process the image
-            thumbnail_image = default_image
-            if thumbnail_image.mode in ('RGBA', 'LA'):
-                background = Image.new(thumbnail_image.mode[:-1],
-                                     thumbnail_image.size, (255, 255, 255))
-                background.paste(thumbnail_image, thumbnail_image.split()[-1])
-                thumbnail_image = background.convert('RGB')
-            else:
-                thumbnail_image = thumbnail_image.convert('RGB')
-            
-            # Resize while maintaining aspect ratio
-            max_size = (512, 512)
-            thumbnail_image.thumbnail(max_size, Image.Resampling.LANCZOS)
-            
-            # Save in all required Prism locations
-            thumbnail_save_paths = [
-                os.path.join(project_path, "00_Pipeline", "project.jpg"),
-                os.path.join(project_path, "00_Pipeline", "thumbnail.jpg"),
-                os.path.join(project_path, "00_Pipeline", "preview.jpg")
+            self.status_bar.showMessage("Creating project...")
+            # Validate Inputs
+            project_name = self.project_name_input.text()
+            project_code = self.project_code_input.text()
+            start_date = self.start_date_input.text()
+            end_date = self.end_date_input.text()
+            validate_inputs(project_name, project_code, start_date, end_date)
+
+            # Update Config and Save
+            self.config['pipeline_data']['globals']['project_name'] = project_name
+            save_config(self.config_file_path, self.config)
+
+            # Create Ftrack Project
+            logger.info("Creating Ftrack project...")
+            project, session = create_ftrack_project(project_name, project_code, start_date, end_date, self.config['ftrack'])
+            if not project:
+                raise Exception("Failed to create Ftrack project.")
+
+            # Setup Folder Structure
+            root_path = self.config['root_path']
+            project_path = os.path.join(root_path, project_name)
+            setup_folder_structure(project_path, self.config['folder_structure'])
+
+            # Process Thumbnail
+            save_paths = [
+                os.path.join(project_path, "00_Pipeline", "project.jpg")
             ]
-            
-            for save_path in thumbnail_save_paths:
-                save_dir = os.path.dirname(save_path)
-                os.makedirs(save_dir, exist_ok=True)
-                thumbnail_image.save(save_path, "JPEG", quality=95)
-                logger.info(f"Thumbnail saved at {save_path}")
-                
+            self.thumbnail_path = getattr(self, 'thumbnail_path', None)
+            process_thumbnail(self.thumbnail_path, save_paths)
+
+            self.status_bar.showMessage(f"Project '{project_name}' created successfully!")
+            QtWidgets.QMessageBox.information(self, 'Success', f"Project '{project_name}' setup complete.")
         except Exception as e:
-            logger.error(f"Error saving thumbnail: {e}")
-            # Continue execution even if thumbnail processing fails
-            pass
+            logger.error(str(e))
+            self.status_bar.showMessage("Error creating project")
+            QtWidgets.QMessageBox.critical(self, 'Error', f"An error occurred:\n{e}")
 
-        QtWidgets.QMessageBox.information(self, 'Success',
-                                          f'Project {project_name} setup complete.')
-
-
+# Main Function
 def main():
     app = QtWidgets.QApplication(sys.argv)
+    app.setApplicationName("Project Setup Tool")
+    app.setOrganizationName("Your Organization")
     window = ProjectSetupApp()
     window.show()
     sys.exit(app.exec_())
-
 
 if __name__ == '__main__':
     main()

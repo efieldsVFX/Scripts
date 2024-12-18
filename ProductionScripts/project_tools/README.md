@@ -6,24 +6,43 @@ A sophisticated collection of production pipeline tools designed for efficient p
 
 ### Project Setup Tool (`Project_setup.py`)
 
-A powerful GUI-based utility for initializing and configuring new projects with automated project management integration.
+A powerful GUI-based utility for initializing and configuring new projects with automated project management integration. Features a modern, dark-themed interface consistent with the Pipeline Asset Setup Tool.
 
 ![Project Creator Interface](docs/images/ProjectCreator.png)
 
 #### Key Features
+- **Modern User Interface**
+  - Professional Nord theme dark interface (#2e3440 base, #3b4252 elements)
+  - Compact, efficient layout (600x500)
+  - Intuitive project information form with real-time validation
+  - Status bar for live feedback
+  - Consistent styling with pipeline tools
+
 - **Project Management Interface**
   - Automated project structure creation
   - Direct ftrack integration
   - Visual configuration interface
-- **Thumbnail Management**: Built-in support for project thumbnail handling using PIL
-- **Robust Error Handling**: Comprehensive logging and error management system
+  - Streamlined thumbnail management with image preview
+  - Clear project status feedback through status bar
+
+- **Core Functionality**
+  - JSON-based configuration management
+  - Automated folder hierarchy creation
+  - Ftrack project initialization and tracking
+  - PIL-based thumbnail processing
+  - Comprehensive error handling with visual feedback
 
 #### Technical Implementation
-- **Framework**: PyQt5 for responsive GUI
-- **Project Management API**: ftrack_api for seamless project tracking
-- **Image Processing**: PIL (Python Imaging Library) for thumbnail manipulation
-- **Configuration**: JSON-based project templates and settings
-- **Logging**: Structured logging system for debugging and monitoring
+- **Framework**: PyQt5 with High DPI scaling
+- **UI Design**:
+  - Nord color theme implementation
+  - Responsive form layouts with proper spacing
+  - Status bar integration for live feedback
+  - Grouped interface sections with consistent styling
+- **Project Management API**: ftrack_api for project tracking
+- **Image Processing**: PIL for thumbnail manipulation
+- **Configuration**: JSON-based project templates
+- **Logging**: Visual feedback through status bar and log window
 
 ### Pipeline Asset Setup Tool (`asset_creator.py`)
 
@@ -34,9 +53,10 @@ A streamlined tool for automating asset creation and folder setup across Unreal 
 #### Key Features
 - **Modern User Interface**
   - Professional Nord theme dark interface
-  - Compact, efficient layout
-  - Three-step asset creation process
+  - Compact, efficient layout (600x400)
+  - Step-by-step asset creation process
   - Real-time progress tracking
+  - Status bar integration
 
 - **Pipeline Integration**
   - **Unreal Engine**: Automated folder structure and project setup
@@ -45,35 +65,36 @@ A streamlined tool for automating asset creation and folder setup across Unreal 
   - **Cross-Pipeline Compatibility**: Unified asset creation across multiple systems
 
 - **Smart Asset Organization**
-  - Standardized naming conventions
+  - Standardized naming conventions with validation
   - Automated folder hierarchy creation
   - Pipeline-specific configuration
-  - Validation and error checking
+  - Real-time validation and error checking
 
 #### Technical Implementation
 - **Framework**: 
-  - PyQt5 for modern GUI components
-  - High DPI scaling support
+  - PyQt5 with High DPI scaling
   - Responsive layout management
   - Custom styled widgets
+  - Status bar integration
 
 - **Design Features**:
-  - Nord color theme (#2e3440 background, #88c0d0 accents)
-  - Compact window size (600x400)
-  - Efficient three-step interface
-  - Progress tracking and status updates
+  - Nord color theme (#2e3440 background, #3b4252 elements)
+  - Compact window sizing
+  - Progress tracking with visual feedback
+  - Consistent styling across components
 
 - **Asset Management**: 
   - Configurable pipeline integrations
   - Automated asset structure creation
   - Real-time validation
-  - Error handling and recovery
+  - Error handling with visual feedback
 
 ## Technologies Used
 
 - **Python 3.x**: Core programming language
-- **PyQt5**: Modern GUI framework
+- **PyQt5**: Modern GUI framework with High DPI support
 - **ftrack API**: Project management integration
+- **PIL**: Image processing
 - **JSON**: Configuration management
 
 ## Pipeline Integration
