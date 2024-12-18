@@ -20,3 +20,72 @@
 2024-12-12 11:43:32,758 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
 2024-12-12 11:43:32,764 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
 2024-12-12 11:43:32,764 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:41:07,936 - sm_analyzer - WARNING - Instagram API credentials not found in config, using test data
+2024-12-18 09:41:07,937 - sm_analyzer - INFO - Instagram collector initialized
+2024-12-18 09:41:07,937 - src.collectors.tiktok_collector - WARNING - TikTok API initialization failed, using test data: 'business_id'
+2024-12-18 09:41:07,937 - src.collectors.twitter_collector - INFO - Twitter collector initialized with API keys
+2024-12-18 09:41:07,937 - sm_analyzer - WARNING - No YouTube API key provided, using test data
+2024-12-18 09:41:08,019 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:41:08,047 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:41:08,792 - src.social_media_collector - INFO - Twitter client initialized successfully
+2024-12-18 09:41:08,798 - src.social_media_collector - INFO - Instagram client initialized successfully
+2024-12-18 09:41:08,798 - src.social_media_collector - INFO - TikTok credentials loaded successfully
+2024-12-18 09:41:08,799 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:41:23,734 - sm_analyzer - WARNING - Instagram API credentials not found in config, using test data
+2024-12-18 09:41:23,734 - sm_analyzer - INFO - Instagram collector initialized
+2024-12-18 09:41:23,734 - src.collectors.tiktok_collector - WARNING - TikTok API initialization failed, using test data: 'business_id'
+2024-12-18 09:41:23,734 - src.collectors.twitter_collector - INFO - Twitter collector initialized with API keys
+2024-12-18 09:41:23,735 - sm_analyzer - WARNING - No YouTube API key provided, using test data
+2024-12-18 09:41:23,735 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:42:58,142 - sm_analyzer - WARNING - Instagram API credentials not found in config, using test data
+2024-12-18 09:42:58,142 - sm_analyzer - INFO - Instagram collector initialized
+2024-12-18 09:42:58,142 - src.collectors.tiktok_collector - WARNING - TikTok API initialization failed, using test data: 'business_id'
+2024-12-18 09:42:58,142 - src.collectors.twitter_collector - INFO - Twitter collector initialized with API keys
+2024-12-18 09:42:58,142 - sm_analyzer - WARNING - No YouTube API key provided, using test data
+2024-12-18 09:42:58,142 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:42:58,149 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:42:58,330 - src.social_media_collector - INFO - Twitter client initialized successfully
+2024-12-18 09:42:58,331 - src.social_media_collector - INFO - Instagram client initialized successfully
+2024-12-18 09:42:58,331 - src.social_media_collector - INFO - TikTok credentials loaded successfully
+2024-12-18 09:42:58,332 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:43:59,532 - numexpr.utils - INFO - Note: NumExpr detected 32 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 16.
+2024-12-18 09:43:59,532 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2024-12-18 09:44:00,531 - __main__ - INFO - Starting server on port 5000
+2024-12-18 09:44:00,531 - __main__ - INFO - Server will be accessible at:
+2024-12-18 09:44:00,531 - __main__ - INFO - - Network: http://192.168.1.185:5000
+2024-12-18 09:44:00,531 - __main__ - INFO - - Local: http://localhost:5000
+2024-12-18 09:44:01,453 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.67:5000
+2024-12-18 09:44:01,453 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-18 09:44:01,465 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-18 09:44:01,852 - numexpr.utils - INFO - Note: NumExpr detected 32 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 16.
+2024-12-18 09:44:01,852 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2024-12-18 09:44:02,819 - __main__ - INFO - Starting server on port 5000
+2024-12-18 09:44:02,819 - __main__ - INFO - Server will be accessible at:
+2024-12-18 09:44:02,819 - __main__ - INFO - - Network: http://192.168.1.185:5000
+2024-12-18 09:44:02,819 - __main__ - INFO - - Local: http://localhost:5000
+2024-12-18 09:44:02,870 - werkzeug - WARNING -  * Debugger is active!
+2024-12-18 09:44:02,874 - werkzeug - INFO -  * Debugger PIN: 135-622-022
+2024-12-18 09:44:05,604 - sm_analyzer - WARNING - Instagram API credentials not found in config, using test data
+2024-12-18 09:44:05,604 - sm_analyzer - INFO - Instagram collector initialized
+2024-12-18 09:44:05,607 - src.collectors.tiktok_collector - WARNING - TikTok API initialization failed, using test data: 'business_id'
+2024-12-18 09:44:05,607 - src.collectors.twitter_collector - INFO - Twitter collector initialized with API keys
+2024-12-18 09:44:05,607 - sm_analyzer - WARNING - No YouTube API key provided, using test data
+2024-12-18 09:44:05,607 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:44:05,611 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:44:05,829 - src.social_media_collector - INFO - Twitter client initialized successfully
+2024-12-18 09:44:05,830 - src.social_media_collector - INFO - Instagram client initialized successfully
+2024-12-18 09:44:05,830 - src.social_media_collector - INFO - TikTok credentials loaded successfully
+2024-12-18 09:44:05,831 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:44:06,836 - werkzeug - INFO - 127.0.0.1 - - [18/Dec/2024 09:44:06] "GET /health HTTP/1.1" 200 -
+2024-12-18 09:44:08,868 - werkzeug - INFO - 127.0.0.1 - - [18/Dec/2024 09:44:08] "GET /health HTTP/1.1" 200 -
+2024-12-18 09:44:15,442 - sm_analyzer - WARNING - Instagram API credentials not found in config, using test data
+2024-12-18 09:44:15,442 - sm_analyzer - INFO - Instagram collector initialized
+2024-12-18 09:44:15,442 - src.collectors.tiktok_collector - WARNING - TikTok API initialization failed, using test data: 'business_id'
+2024-12-18 09:44:15,442 - src.collectors.twitter_collector - INFO - Twitter collector initialized with API keys
+2024-12-18 09:44:15,442 - sm_analyzer - WARNING - No YouTube API key provided, using test data
+2024-12-18 09:44:15,445 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
+2024-12-18 09:44:16,466 - werkzeug - INFO - 127.0.0.1 - - [18/Dec/2024 09:44:16] "GET /health HTTP/1.1" 200 -
+2024-12-18 09:44:18,490 - werkzeug - INFO - 127.0.0.1 - - [18/Dec/2024 09:44:18] "GET /health HTTP/1.1" 200 -

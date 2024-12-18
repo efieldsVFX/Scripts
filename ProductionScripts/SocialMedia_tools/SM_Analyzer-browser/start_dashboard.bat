@@ -51,9 +51,16 @@ REM Download spaCy model
 echo Downloading spaCy model...
 python -m spacy download en_core_web_sm
 
+REM Start the server in the background
+echo Starting the server...
+cd src
+start /B python server.py
+
+REM Wait a few seconds for the server to start
+timeout /t 5 /nobreak
+
 REM Start the dashboard
 echo Starting the dashboard...
-cd src
 streamlit run dashboard.py
 
 REM Deactivate virtual environment when done

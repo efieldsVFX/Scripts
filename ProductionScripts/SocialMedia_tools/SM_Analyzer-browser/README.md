@@ -6,6 +6,8 @@
 
 A powerful social media analytics dashboard that collects, analyzes, and visualizes data from multiple social media platforms including Twitter, Instagram, TikTok, Reddit, and more.
 
+![SM_Analyzer Dashboard](docs/images/SM_Analyzer-browser.png)
+
 ## 👨‍💻 Author
 
 **Eric Fields** - [efieldsvfx@gmail.com](mailto:efieldsvfx@gmail.com)

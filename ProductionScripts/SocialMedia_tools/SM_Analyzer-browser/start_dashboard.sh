@@ -52,9 +52,16 @@ fi
 echo "Downloading spaCy model..."
 python3 -m spacy download en_core_web_sm
 
+# Start the server in the background
+echo "Starting the server..."
+cd src
+python3 server.py &
+
+# Wait a few seconds for the server to start
+sleep 5
+
 # Start the dashboard
 echo "Starting the dashboard..."
-cd src
 streamlit run dashboard.py
 
 # Deactivate virtual environment when done
