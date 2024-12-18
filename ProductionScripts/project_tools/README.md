@@ -25,46 +25,55 @@ A powerful GUI-based utility for initializing and configuring new projects with 
 - **Configuration**: JSON-based project templates and settings
 - **Logging**: Structured logging system for debugging and monitoring
 
-### Asset Creator (`asset_creator.py`)
+### Pipeline Asset Setup Tool (`asset_creator.py`)
 
-An advanced asset management system for creating and organizing production assets across multiple pipeline systems.
+A streamlined tool for automating asset creation and folder setup across Unreal Engine, Prism Pipeline, and ftrack integration.
+
+![Pipeline Asset Setup Tool Interface](docs/images/PAST_Tool.png)
 
 #### Key Features
-- **Asset Management Interface**
-  - Professional dark theme interface
-  - Intuitive form layout
-  - Smart input controls
-  - Asset preview and version tracking
+- **Modern User Interface**
+  - Professional Nord theme dark interface
+  - Compact, efficient layout
+  - Three-step asset creation process
+  - Real-time progress tracking
 
 - **Pipeline Integration**
-  - Seamless Unreal Engine workflow
-  - Prism Pipeline connectivity
-  - Multi-pipeline support
-  - Project structure standardization
+  - **Unreal Engine**: Automated folder structure and project setup
+  - **Prism Pipeline**: Integrated workflow and asset management
+  - **Ftrack**: Project tracking and asset status management
+  - **Cross-Pipeline Compatibility**: Unified asset creation across multiple systems
 
 - **Smart Asset Organization**
-  - Automated folder structure creation
-  - Asset type categorization
-  - Version control integration
-  - Thumbnail generation
+  - Standardized naming conventions
+  - Automated folder hierarchy creation
+  - Pipeline-specific configuration
+  - Validation and error checking
 
 #### Technical Implementation
-- **Framework**: PyQt5/PySide2 for GUI
-- **Pipeline APIs**: 
-  - Unreal Engine integration
-  - Prism Pipeline connectivity
-  - Version control system hooks
+- **Framework**: 
+  - PyQt5 for modern GUI components
+  - High DPI scaling support
+  - Responsive layout management
+  - Custom styled widgets
+
+- **Design Features**:
+  - Nord color theme (#2e3440 background, #88c0d0 accents)
+  - Compact window size (600x400)
+  - Efficient three-step interface
+  - Progress tracking and status updates
+
 - **Asset Management**: 
-  - Standardized naming conventions
-  - Automated metadata handling
-  - Asset relationship tracking
+  - Configurable pipeline integrations
+  - Automated asset structure creation
+  - Real-time validation
+  - Error handling and recovery
 
 ## Technologies Used
 
 - **Python 3.x**: Core programming language
+- **PyQt5**: Modern GUI framework
 - **ftrack API**: Project management integration
-- **PyQt5**: GUI framework
-- **PIL**: Image processing
 - **JSON**: Configuration management
 
 ## Pipeline Integration
@@ -84,18 +93,19 @@ These tools are designed to seamlessly integrate into existing VFX pipelines:
    - Configuration of project-specific settings
 
 2. **Asset Management**
-   - Creation and organization of production assets
-   - Version control and tracking
-   - Pipeline status monitoring
+   - Streamlined asset creation across multiple pipelines
+   - Automated folder structure generation
+   - Pipeline integration validation
+   - Progress tracking and status updates
 
 ## Performance Considerations
 
 - **Efficient Resource Usage**:
   - Optimized file operations
-  - Smart caching mechanisms
+  - Responsive UI design
   - Memory-efficient operations
 
 - **Scalability**:
-  - Efficient handling of large project structures
-  - Optimized database queries
-  - Responsive GUI even with complex operations
+  - Handles multiple pipeline integrations
+  - Fast asset creation and validation
+  - Responsive interface during operations
