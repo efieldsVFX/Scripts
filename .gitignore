@@ -3,3 +3,4 @@
 /ProductionScripts/SocialMedia_tools/SM_Analyzer-browser/src/visualization/__pycache__
 *.pyc
 *.pyc
+/ProductionScripts/SocialMedia_tools/SM_Analyzer-browser/src/logs

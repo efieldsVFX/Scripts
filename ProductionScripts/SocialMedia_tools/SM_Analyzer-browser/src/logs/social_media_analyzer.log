@@ -89,3 +89,5 @@
 2024-12-18 09:44:15,445 - src.collectors.reddit_collector - INFO - Reddit collector initialized successfully
 2024-12-18 09:44:16,466 - werkzeug - INFO - 127.0.0.1 - - [18/Dec/2024 09:44:16] "GET /health HTTP/1.1" 200 -
 2024-12-18 09:44:18,490 - werkzeug - INFO - 127.0.0.1 - - [18/Dec/2024 09:44:18] "GET /health HTTP/1.1" 200 -
+2024-12-18 09:57:49,368 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Administrator\\Documents\\GitHub\\Scripts\\ProductionScripts\\SocialMedia_tools\\SM_Analyzer-browser\\src\\analysis\\tiktok_content_analyzer.py', reloading
+2024-12-18 09:57:49,376 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Administrator\\Documents\\GitHub\\Scripts\\ProductionScripts\\SocialMedia_tools\\SM_Analyzer-browser\\etc\\test_sentiment.py', reloading

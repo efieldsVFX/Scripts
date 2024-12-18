@@ -1,29 +1,14 @@
-"""
-Unreal Engine Project Launcher
-A tool to launch Unreal Engine projects with proper version detection.
-"""
-
-# Standard library imports
-import os
 import sys
-import subprocess
-import traceback
+import os
 from datetime import datetime
-
-# Third-party imports
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QLabel, QVBoxLayout, 
+                             QProgressBar, QMessageBox, QFileDialog, QWidget, QComboBox, QPushButton, QHBoxLayout, QGroupBox)
 from PyQt5.QtCore import Qt, QTimer, QSettings
 from PyQt5.QtGui import QIcon, QFont
-from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QLabel, QVBoxLayout, QProgressBar, 
-    QMessageBox, QFileDialog, QWidget, QComboBox, QPushButton, 
-    QHBoxLayout, QGroupBox, QLineEdit, QTextEdit
-)
-
-__version__ = '1.0.0'
-__author__ = 'Open Source'
+import subprocess
 
 def resource_path(relative_path):
-    """Get the absolute path to the resource."""
+    """ Get the absolute path to the resource. """
     try:
         base_path = sys._MEIPASS
     except Exception:
@@ -31,38 +16,41 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 class UnrealEngineLauncher(QMainWindow):
-    """Main window class for the Unreal Engine Launcher application."""
-    
     def __init__(self):
         super().__init__()
-        self.init_settings()
-        self.init_timer()
-        self.initUI()
+        
+        # Add exception handling for the entire application
+        sys.excepthook = self.handle_exception
 
-    def init_settings(self):
-        """Initialize application settings."""
-        self.settings = QSettings('UnrealLauncher', 'ProjectSettings')
-        default_projects_path = os.path.join(
-            os.path.expanduser("~"), 
-            "Documents",
-            "UnrealProjects"
-        )
-        self.ue_projects_dir = self.settings.value(
-            'last_directory',
-            default_projects_path,
-            str
-        )
-
-    def init_timer(self):
-        """Initialize progress timer."""
+        # Initialize the default Unreal Projects Directory
+        # Try to read from settings first, fallback to default
+        try:
+            saved_dir = self.settings.value('last_directory')
+            self.ue_projects_dir = saved_dir if saved_dir and os.path.exists(saved_dir) else "S:/UNREAL_PROJECTS"
+        except:
+            self.ue_projects_dir = "S:/UNREAL_PROJECTS"
+        
+        # Initialize timer and progress value
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_progress)
         self.progress_value = 0
 
+        # Initialize settings
+        self.settings = QSettings('UnrealLauncher', 'ProjectSettings')
+
+        # Set up the window icon and title
+        self.initUI()  # Call a method to set up the UI
+
     def initUI(self):
-        # Set window properties
-        self.setWindowTitle("Unreal Engine Project Launcher")
+        # Set up the window icon
+        logo_path = resource_path("logo_white_Do5_icon.ico")
+        self.setWindowIcon(QIcon(logo_path))
+
+        # Set the window title
+        self.setWindowTitle("Unreal Engine Launcher")
         self.setGeometry(300, 300, 600, 400)
+
+        # Set the overall style
         self.setStyleSheet("background-color: #2e3440; color: #d8dee9;")
         
         # Create central widget and layout
@@ -70,15 +58,10 @@ class UnrealEngineLauncher(QMainWindow):
         self.setCentralWidget(central_widget)
         layout = QVBoxLayout(central_widget)
 
-        # Add instructions
-        instructions_label = QLabel(
-            "Select your Unreal Projects folder and choose a project to launch.", 
-            self
-        )
+        # Add instructions at the top
+        instructions_label = QLabel("Step 1: Select your Unreal Projects folder. Step 2: Choose a project to launch.", self)
         instructions_label.setAlignment(Qt.AlignCenter)
-        instructions_label.setStyleSheet(
-            "font-size: 14px; color: #d8dee9; margin-bottom: 10px;"
-        )
+        instructions_label.setStyleSheet("font-size: 14px; color: #d8dee9; margin-bottom: 10px;")
         layout.addWidget(instructions_label)
 
         # Create a more prominent directory selection section
@@ -203,29 +186,57 @@ class UnrealEngineLauncher(QMainWindow):
         self.project_dropdown.addItem("▼")  # Unicode down arrow
         project_layout.addWidget(self.project_dropdown)
         
-        # Add search box above project dropdown
-        search_layout = QHBoxLayout()
-        self.search_box = QLineEdit()
-        self.search_box.setPlaceholder("Search projects...")
-        self.search_box.textChanged.connect(self.filter_projects)
-        search_layout.addWidget(self.search_box)
-        project_layout.addLayout(search_layout)
-        
-        # Replace status label with text edit for logging
-        self.log_window = QTextEdit()
-        self.log_window.setReadOnly(True)
-        self.log_window.setMaximumHeight(100)
-        self.log_window.setStyleSheet("""
-            QTextEdit {
-                background-color: #3b4252;
+        # Add status label
+        self.status_label = QLabel("", self)
+        self.status_label.setStyleSheet("""
+            QLabel {
                 color: #d8dee9;
-                border: 1px solid #4c566a;
-                border-radius: 4px;
-                font-family: monospace;
+                font-size: 12px;
+                margin-top: 10px;
             }
         """)
-        layout.addWidget(self.log_window)
-        
+        layout.addWidget(self.status_label)
+
+        # Add log label
+        self.log_label = QLabel("", self)
+        self.log_label.setStyleSheet("""
+            QLabel {
+                color: #a3be8c;
+                font-size: 11px;
+                font-style: italic;
+            }
+        """)
+        layout.addWidget(self.log_label)
+
+        layout.addWidget(project_group)
+
+        # Info label to display selected project and version
+        self.info_label = QLabel("", self)
+        self.info_label.setStyleSheet("color: #d8dee9; font-size: 12px; margin-top: 10px;")
+        layout.addWidget(self.info_label)
+
+        # Progress bar for initialization
+        self.progress_bar = QProgressBar(self)
+        self.progress_bar.setRange(0, 100)
+        self.progress_bar.setValue(0)
+        self.progress_bar.setStyleSheet("""
+            QProgressBar {
+                border: 1px solid #88c0d0;
+                border-radius: 4px;
+                text-align: center;
+            }
+            QProgressBar::chunk {
+                background-color: #5e81ac;
+            }
+        """)
+        layout.addWidget(self.progress_bar)
+
+        # Connect the project dropdown to its handler
+        self.project_dropdown.currentTextChanged.connect(self.on_project_changed)
+
+        # Populate projects from default directory
+        self.populate_projects()
+
         # Add Launch button
         self.launch_button = QPushButton("🚀 Launch Project", self)
         self.launch_button.setToolTip("Launch the selected Unreal project")
@@ -247,39 +258,84 @@ class UnrealEngineLauncher(QMainWindow):
         layout.addWidget(self.launch_button)
 
     def prompt_for_directory(self):
+        """
+        Prompt the user to select their project directory and provide feedback.
+        """
         try:
+            # Create a more descriptive dialog
             dir = QFileDialog.getExistingDirectory(
                 self,
-                "Select Unreal Projects Folder",
+                "Select the Root Unreal Projects Folder (e.g., S:/UNREAL_PROJECTS)",
                 self.ue_projects_dir,
                 QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks
             )
             
             if dir:
-                if self.validate_projects_directory(dir):
+                # Check if they selected a project folder instead of the root directory
+                try:
+                    if any(f.endswith('.uproject') for f in os.listdir(dir)):
+                        QMessageBox.warning(
+                            self,
+                            "Invalid Selection",
+                            "You've selected a specific project folder.\n\n"
+                            "Please select the parent folder that contains ALL your Unreal projects.\n"
+                            "For example: 'S:/UNREAL_PROJECTS'\n\n"
+                            "✗ Incorrect: 'S:/UNREAL_PROJECTS/MyProject'\n"
+                            "✓ Correct: 'S:/UNREAL_PROJECTS'"
+                        )
+                        return
+                except Exception as e:
+                    QMessageBox.critical(
+                        self,
+                        "Error",
+                        f"Error accessing directory:\n{str(e)}"
+                    )
+                    return
+                
+                # Validate that this looks like an Unreal projects directory
+                if self.is_valid_projects_directory(dir):
                     self.ue_projects_dir = dir
                     self.directory_label.setText(dir)
                     self.populate_projects()
-                    self.log_message("Projects folder set successfully")
-                    self.settings.setValue('last_directory', dir)
+                    self.status_label.setText("✓ Projects folder set successfully!")
+                    self.log_label.setText("Found Unreal Engine projects")
+                    
+                    try:
+                        # Save to settings for next time
+                        self.settings.setValue('last_directory', dir)
+                    except Exception as e:
+                        print(f"Warning: Could not save settings: {str(e)}")
                 else:
                     QMessageBox.warning(
                         self,
                         "Invalid Directory",
-                        "Please select a folder containing Unreal Engine projects.\n\n"
-                        "Each project should have its own subfolder with a .uproject file."
+                        "The selected folder doesn't appear to contain any Unreal Engine projects.\n\n"
+                        "Please select the root folder where your Unreal projects are stored.\n"
+                        "This is typically a folder containing multiple project folders, "
+                        "each with a .uproject file.\n\n"
+                        "Example: 'S:/UNREAL_PROJECTS'"
                     )
         except Exception as e:
-            self.handle_error("Directory Selection Error", str(e))
+            QMessageBox.critical(
+                self,
+                "Error",
+                f"An error occurred while selecting directory:\n{str(e)}"
+            )
 
-    def validate_projects_directory(self, directory):
-        """Validate that the directory contains Unreal Engine projects"""
+    def is_valid_projects_directory(self, directory):
+        """
+        Check if the directory contains valid Unreal Engine projects.
+        Returns True if at least one subdirectory contains a .uproject file.
+        """
         try:
+            # Look for at least one .uproject file in immediate subdirectories
             for item in os.listdir(directory):
                 project_dir = os.path.join(directory, item)
                 if os.path.isdir(project_dir):
-                    if any(f.endswith('.uproject') for f in os.listdir(project_dir)):
-                        return True
+                    # Check each subdirectory for a .uproject file
+                    for subitem in os.listdir(project_dir):
+                        if subitem.endswith('.uproject'):
+                            return True
             return False
         except Exception:
             return False
@@ -291,7 +347,7 @@ class UnrealEngineLauncher(QMainWindow):
         project_name = self.project_dropdown.currentText()
         if project_name:
             self.project_name = project_name
-            self.log_message(f"Project selected: {self.project_name}")
+            self.info_label.setText(f"Project selected: {self.project_name}")
 
     def populate_projects(self):
         """
@@ -306,11 +362,11 @@ class UnrealEngineLauncher(QMainWindow):
             ]
             self.project_dropdown.addItems(projects)
             if projects:
-                self.log_message("Found Unreal Engine projects")
+                self.status_label.setText("Found Unreal Engine projects")
             else:
-                self.log_message("No valid projects found in directory")
+                self.status_label.setText("No valid projects found in directory")
         else:
-            self.log_message("Selected directory does not exist!")
+            self.status_label.setText("Selected directory does not exist!")
     
     def read_metadata(self):
         """
@@ -372,7 +428,7 @@ class UnrealEngineLauncher(QMainWindow):
             self.ue_version_full = self.read_metadata()
             if self.ue_version_full:  # Only proceed if metadata was successfully read
                 self.ue_version_clean = self.clean_version(self.ue_version_full)
-                self.log_message(f"Launching Unreal Engine {self.ue_version_clean}... Please wait.")
+                self.status_label.setText(f"Launching Unreal Engine {self.ue_version_clean}... Please wait.")
                 self.timer.start(100)
         else:
             QMessageBox.warning(self, "Warning", "Please select a project before launching!")
@@ -511,55 +567,30 @@ class UnrealEngineLauncher(QMainWindow):
         self.close()
 
     def handle_exception(self, exc_type, exc_value, exc_traceback):
-        """Enhanced exception handler with logging"""
-        error_details = "".join(
-            traceback.format_exception(exc_type, exc_value, exc_traceback)
-        )
-        self.log_message(f"ERROR: {str(exc_value)}")
-        self.log_message(error_details)
-        
+        """Global exception handler for the application"""
+        error_msg = f"An unexpected error occurred:\n{str(exc_value)}\n\nPlease contact support."
         QMessageBox.critical(
             self,
             "Critical Error",
-            f"An unexpected error occurred:\n{str(exc_value)}\n\n"
-            "Check the log window for details.\n"
-            "Please contact support if the issue persists."
+            error_msg
         )
-
-    def filter_projects(self, search_text):
-        """Filter projects based on search text"""
-        self.project_dropdown.clear()
-        if os.path.exists(self.ue_projects_dir):
-            all_projects = [
-                f for f in os.listdir(self.ue_projects_dir) 
-                if os.path.isdir(os.path.join(self.ue_projects_dir, f)) 
-                and not (f.startswith('UP_') or f.startswith('UE_'))
-            ]
-            
-            filtered_projects = [
-                p for p in all_projects 
-                if search_text.lower() in p.lower()
-            ]
-            
-            self.project_dropdown.addItems(filtered_projects)
-            self.log_message(f"Found {len(filtered_projects)} matching projects")
-
-    def log_message(self, message):
-        """Add timestamped message to log window"""
-        timestamp = datetime.now().strftime("%H:%M:%S")
-        self.log_window.append(f"[{timestamp}] {message}")
-        # Ensure the latest message is visible
-        self.log_window.verticalScrollBar().setValue(
-            self.log_window.verticalScrollBar().maximum()
-        )
+        # Log the full error for debugging
+        import traceback
+        print("".join(traceback.format_exception(exc_type, exc_value, exc_traceback)))
 
 if __name__ == '__main__':
     try:
         app = QApplication(sys.argv)
+        
+        # Set application metadata
         app.setApplicationName("Unreal Engine Launcher")
         app.setApplicationVersion("1.0.0")
-        app.setOrganizationName("Open Source")
+        app.setOrganizationName("Your Organization")
         
+        # Apply system-wide exception handling
+        sys.excepthook = lambda *args: UnrealEngineLauncher.handle_exception(None, *args)
+        
+        # Create and show the launcher
         launcher = UnrealEngineLauncher()
         launcher.show()
         
@@ -567,6 +598,6 @@ if __name__ == '__main__':
     except Exception as e:
         QMessageBox.critical(
             None,
-            "Startup Error",
-            f"Failed to start the application:\n{str(e)}"
+            "Critical Error",
+            f"Failed to start the application:\n{str(e)}\n\nPlease contact support."
         )

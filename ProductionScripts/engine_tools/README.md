@@ -1,4 +1,5 @@
 # Engine Tools Suite
+
 ## Production Pipeline Integration Tools for Unreal Engine
 
 ![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.x-blue)
@@ -15,30 +16,39 @@ A sophisticated PyQt5-based launcher application that bridges Unreal Engine with
 
 #### Interface Overview
 1. **Project Root Selection**
-   - Browse or directly input your Unreal Projects folder
-   - Smart path validation and auto-completion
-   - Clear visual feedback with example paths
+   - Smart directory validation with clear feedback
+   - Prevents selection of individual project folders
+   - Automatic path validation and persistence
+   - Default fallback to `S:/UNREAL_PROJECTS`
 
 2. **Project Selection**
-   - Dynamic project list with real-time filtering
-   - Intelligent project detection and validation
-   - Support for multiple project locations
+   - Dynamic project list with automatic filtering
+   - Skips system directories and UE/UP prefixed folders
+   - Validates .uproject files in project directories
+   - Clear status indicators and error messages
 
 3. **Launch Controls**
-   - Progress tracking with status indicators
-   - Clear visual feedback during launch
-   - Integrated error handling and reporting
+   - Real-time progress tracking with status updates
+   - Comprehensive error handling and user feedback
+   - Version detection from project metadata
+   - High DPI scaling support for all displays
 
 #### Key Features
-- **Smart Project Management**:
-  - Visual project folder selection
-  - Intelligent project detection and filtering
-  - Progress tracking with status indicators
-  - Clean, modern dark theme interface
-- **Project Management**:
-  - Multi-project support with intelligent filtering
-  - Automated project validation and health checks
-  - Custom launch configurations per project
+- **Robust Project Management**:
+  - Intelligent project directory validation
+  - Automatic project detection and filtering
+  - Clear visual feedback and error messages
+  - High DPI compatibility across displays
+- **Error Handling & Reliability**:
+  - Global exception handling with detailed logging
+  - Graceful recovery from invalid paths
+  - Clear user feedback for common issues
+  - Persistent settings with fallback values
+- **User Experience**:
+  - Modern dark theme interface
+  - Consistent UI scaling across devices
+  - Informative status updates
+  - Detailed error messaging
 - **Pipeline Integration**:
   - Seamless ftrack integration for production tracking
   - Asset versioning and dependency management
@@ -147,8 +157,6 @@ The spec file includes:
 - UPX compression
 - Proper binary collection
 
-This method is preferred over direct command-line options as it ensures consistent builds with all necessary configurations.
-
 #### Building Steps
 1. **Install Build Dependencies**:
    ```bash
@@ -199,6 +207,7 @@ cd ProductionScripts/engine_tools
 ```bash
 pyinstaller --name="UnrealLauncher" --windowed --icon=resources/icon.ico --add-data="resources/*;resources/" launcher.py
 ```
+
 ### Build Options Explained
 - `--name`: Specifies the output executable name
 - `--windowed`: Creates a Windows executable without console window
@@ -216,48 +225,6 @@ The packaged executable will be created in the `dist/UnrealLauncher` directory.
 - If resources are not found, ensure the `resource_path()` function is used correctly
 - For missing dependencies, check the generated `warn-launcher.txt` file
 - Run with console to see error messages: Remove `--windowed` flag during testing
-
-## 🎯 Usage Examples
-
-### Basic Project Launch
-```python
-launcher = UnrealEngineLauncher()
-launcher.launch_project("ProjectName", config="development")
-```
-
-### Pipeline Integration
-```python
-# Initialize with ftrack
-launcher.connect_ftrack(
-    project_id="PRJ_001",
-    task_id="TASK_123"
-)
-
-# Launch with tracking
-launcher.launch_tracked_session(
-    project="ProjectName",
-    task_type="Layout",
-    auto_timer=True
-)
-```
-
-## 🏆 Production Benefits
-- **50% reduction** in project setup time
-- **Automated tracking** of work hours and progress
-- **Seamless integration** with production management tools
-- **Standardized workflow** across teams and projects
-
-## 🔒 Security
-- Secure API key management
-- Role-based access control
-- Audit logging
-- Encrypted communications
-
-## 📈 Performance
-- Lightweight application footprint
-- Optimized asset synchronization
-- Cached project data
-- Minimal launch overhead
 
 ---
 *Developed by Eric Fields (efieldsvfx@gmail.com)*
