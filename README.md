@@ -6,7 +6,7 @@ This repository contains various production scripts and tools organized into dif
 
 The `ProductionScripts` directory contains the following tool collections:
 
-- **Metahuman_tools**: Scripts and utilities for working with Metahuman assets
+- **Metahuman_tools**: Scripts and utilities for working with Metahuman assets in Unreal
 - **SocialMedia_tools**: Tools for social media analysis and management
 - **engine_tools**: Scripts related to engine-specific operations
 - **project_tools**: General project management and workflow tools
