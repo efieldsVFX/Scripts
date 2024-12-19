@@ -7,6 +7,8 @@
 
 A comprehensive collection of production-grade tools designed for professional VFX and game development pipelines. This suite demonstrates advanced pipeline development capabilities including multi-threading, real-time processing, and seamless integration with industry-standard tools.
 
+> **Note on Portfolio Scope**: This repository contains a curated selection of production tools that are available for public sharing. Due to Non-Disclosure Agreements (NDAs) and proprietary company standards, many production scripts from my professional work cannot be included. The tools presented here represent my approach to pipeline development while respecting intellectual property rights and confidentiality requirements of previous employers.
+
 ## 🎯 Pipeline Overview
 
 ```mermaid
@@ -81,6 +83,39 @@ graph LR
 - **User Friendly**: Intuitive GUI interfaces
 - **Scalable**: Designed for large-scale production pipelines
 - **Integrated**: Seamless connection with industry tools
+
+## 💻 Technical Stack
+
+### Programming & Development
+- **Core Languages**: Python (Advanced), MEL, C++ (Basic)
+- **Operating Systems**: Linux, Windows
+- **Cloud Infrastructure**: AWS, Google Cloud
+- **Version Control**: PlasticSCM, Git
+
+### DCC Applications
+- **3D & Animation**: Maya, Houdini
+- **Rendering**: RenderMan
+- **Compositing**: Nuke
+- **Texturing**: Substance Painter, Marvelous Designer
+- **Real-time**: Unreal Engine 5.x
+
+### Production Management
+- **Project Tracking**: ShotGrid, Ftrack, Jira
+- **Pipeline Tools**: Prism Pipeline
+- **Render Management**: Deadline
+- **Custom Tools**: 
+  - Asset Management System
+  - Texture Processing Pipeline
+  - MetaHuman Automation
+  - Social Media Analytics
+
+### Integration Examples
+- Ftrack API for production tracking
+- Unreal Engine Python API
+- Maya and Nuke automation
+- AWS/GCloud deployment scripts
+- Multi-threaded batch processing
+- Cross-DCC asset transfer
 
 ## 📈 Pipeline Benefits
 - Streamlined asset management
