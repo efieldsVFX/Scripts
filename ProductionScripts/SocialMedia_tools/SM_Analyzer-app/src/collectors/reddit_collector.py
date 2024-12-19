@@ -16,9 +16,9 @@ class RedditCollector:
         """Initialize Reddit API client"""
         try:
             self.reddit = praw.Reddit(
-                client_id="fKZZCHZERy6y5xgHY5_jRQ",
-                client_secret="_Ly4iNrBj0iszak_0gT7s4zzmyForw",
-                user_agent="SocialMediaAnalyzer/0.1 by Former-Click-5185"
+                client_id="",
+                client_secret="",
+                user_agent=""
             )
             logger.info("Reddit collector initialized successfully")
         except Exception as e:
