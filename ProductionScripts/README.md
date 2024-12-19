@@ -5,6 +5,8 @@
 ![ftrack](https://img.shields.io/badge/ftrack-Integrated-orange)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
+Last Updated: December 19, 2024
+
 A comprehensive collection of production-grade tools designed for professional VFX and game development pipelines. This suite demonstrates advanced pipeline development capabilities including multi-threading, real-time processing, and seamless integration with industry-standard tools.
 
 > **Note on Portfolio Scope**: This repository contains a curated selection of production tools that are available for public sharing. Due to Non-Disclosure Agreements (NDAs) and proprietary company standards, many production scripts from my professional work cannot be included. The tools presented here represent my approach to pipeline development while respecting intellectual property rights and confidentiality requirements of previous employers.
@@ -14,162 +16,126 @@ A comprehensive collection of production-grade tools designed for professional V
 ```mermaid
 graph TD
     A[Project Management] --> B[Asset Creation]
-    B --> C[Texture Processing]
-    B --> D[MetaHuman Creation]
-    C --> E[Engine Integration]
+    B --> C[Maya Tools]
+    B --> D[Nuke Tools]
+    C --> E[Unreal Integration]
     D --> E
     E --> F[Social Media Distribution]
 ```
 
 ## 🛠️ Tool Suites
 
-### 📊 Project Tools
-Advanced project management and organization system featuring:
-- Automated project structure generation
-- ftrack integration for production tracking
-- Visual project configuration through PyQt5
-- Comprehensive logging and error management
+### 🎨 Maya Tools
+Professional-grade Maya automation toolkit featuring:
+- **Scene Cleanup Utility**
+  - Intelligent scene optimization with backup system
+  - Material and plugin management
+  - Render layer optimization
+  - Modern Qt-based interface with preview functionality
+- **Frame Range Manager**
+  - ShotGrid pipeline integration
+  - Automated frame range synchronization
+  - Comprehensive error handling and logging
+  - Batch processing support
+- **Safety Features**
+  - Automatic scene backups
+  - Protected node preservation
+  - Detailed logging system
+  - Non-blocking notifications
 
-### 🎨 Texture Tools
-High-performance texture processing system with:
-- Multi-threaded batch processing
-- Real-time progress visualization
-- Memory-efficient large batch operations
-- Automated folder structure creation
+### 🎬 Nuke Tools
+Professional-grade Nuke compositing toolkit featuring:
+- **Node Validation & Analysis**
+  - Automated node graph validation
+  - Performance optimization
+  - Batch processing capabilities
+  - Custom validation rules
+  - Backup management system
+- **Advanced Debugging Suite**
+  - Thread and memory optimization
+  - System resource monitoring
+  - Node state management
+  - Comprehensive logging
+  - Qt-based debug interface
+- **Production Workflow Tools**
+  - UI element restoration
+  - Layout optimization
+  - Custom panel management
+  - Progress tracking
+  - Error handling and recovery
 
-### 🤖 MetaHuman Tools
-Sophisticated MetaHuman asset automation featuring:
-- Parallel face and body animation processing
-- Direct Unreal Engine API integration
-- Custom asset registry management
-- Automated import pipeline
+### 🔧 Pipeline Tools
+Core infrastructure components providing:
+- **Project Management**
+  - Automated project setup
+  - Standardized folder structures
+  - ftrack integration
+  - Multi-pipeline support
+- **Asset Management**
+  - Multiple asset type templates
+  - Automated folder creation
+  - Pipeline-specific configurations
+  - Version control integration
+- **Workflow Integration**
+  - Unreal Engine setup
+  - Prism pipeline support
+  - Cross-DCC compatibility
+  - Progress tracking
 
-### 🎮 Engine Tools
-Unreal Engine pipeline integration suite offering:
-- Smart version detection and management
-- Multi-project support with health checks
-- Custom launch configurations
-- Production tracking integration
-
-### 🎯 Asset Tools
-Comprehensive asset management system including:
-- Version control integration
-- Asset validation and verification
-- Automated naming convention enforcement
-- Pipeline status tracking
+### 🎮 Unreal Tools
+Comprehensive Unreal Engine toolkit featuring:
+- **Project Management**
+  - Custom project launcher
+  - Environment configuration
+  - Build system integration
+  - Status monitoring
+- **Content Creation**
+  - Material instance creation
+  - Multi-threaded texture importing
+  - Batch processing support
+  - Progress tracking
+- **Metahuman Tools**
+  - Batch import system
+  - Asset management
+  - Pipeline integration
+  - Version control
 
 ### 📱 Social Media Tools
-Data-driven social media analytics featuring:
-- Multi-platform data collection
-- Sentiment analysis
-- Engagement metrics tracking
-- Content performance analytics
+Cross-platform analytics suite available in two formats:
+- **Desktop Application**
+  - Native Windows/macOS support
+  - Offline analysis capabilities
+  - Local data processing
+  - System-level integration
+- **Browser Application**
+  - Streamlit-based interface
+  - Cloud processing support
+  - Real-time visualization
+  - Collaborative features
+- **Analytics Features**
+  - Multi-platform data collection
+  - Interactive dashboards
+  - Performance metrics
+  - Shareable reports
 
-## 🔧 Technical Architecture
+## 🚀 Getting Started
 
-```mermaid
-graph LR
-    A[Python Core] --> B[Multi-threading]
-    A --> C[UI/PyQt5]
-    A --> D[API Integration]
-    B --> E[Performance]
-    C --> E
-    D --> E
-```
+1. Ensure you have Python 3.7+ installed
+2. Clone this repository
+3. Install required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Configure your environment variables as specified in each tool's documentation
 
-## 🚀 Key Features
-- **High Performance**: Multi-threaded processing across all tools
-- **Production Ready**: Robust error handling and logging
-- **User Friendly**: Intuitive GUI interfaces
-- **Scalable**: Designed for large-scale production pipelines
-- **Integrated**: Seamless connection with industry tools
+## 📚 Documentation
 
-## 💻 Technical Stack
+Each tool suite contains its own detailed documentation within its respective directory. Please refer to the individual README files for specific usage instructions and requirements.
 
-### Programming & Development
-- **Core Languages**: Python (Advanced), MEL, C++ (Basic)
-- **Operating Systems**: Linux, Windows
-- **Cloud Infrastructure**: AWS, Google Cloud
-- **Version Control**: PlasticSCM, Git
+## 🤝 Contributing
 
-### DCC Applications
-- **3D & Animation**: Maya, Houdini
-- **Rendering**: RenderMan
-- **Compositing**: Nuke
-- **Texturing**: Substance Painter, Marvelous Designer
-- **Real-time**: Unreal Engine 5.x
+Contributions are welcome! Please read our contributing guidelines and submit pull requests for any enhancements.
 
-### Production Management
-- **Project Tracking**: ShotGrid, Ftrack, Jira
-- **Pipeline Tools**: Prism Pipeline
-- **Render Management**: Deadline
-- **Custom Tools**: 
-  - Asset Management System
-  - Texture Processing Pipeline
-  - MetaHuman Automation
-  - Social Media Analytics
+## 📄 License
 
-### Integration Examples
-- Ftrack API for production tracking
-- Unreal Engine Python API
-- Maya and Nuke automation
-- AWS/GCloud deployment scripts
-- Multi-threaded batch processing
-- Cross-DCC asset transfer
-
-## 📈 Pipeline Benefits
-- Streamlined asset management
-- Reduced manual operations
-- Increased production efficiency
-- Enhanced quality control
-- Real-time progress tracking
-
-## 🎨 User Interfaces
-
-This suite features professionally designed, modern user interfaces across all tools:
-
-### Project Tools
-- Modern Qt-based project configuration interface
-- Visual task management system
-- Interactive project structure viewer
-
-### Asset Tools
-- Intuitive asset creation and management interface
-- Real-time status updates
-- Visual asset hierarchy viewer
-
-### Texture Tools
-- Multi-threaded processing interface
-- Progress visualization
-- Batch operation management
-
-### MetaHuman Tools
-- Sophisticated animation import interface
-- Real-time progress tracking
-- Visual error reporting
-
-### Engine Tools
-- Smart project management interface
-- Version control integration
-- Status monitoring dashboard
-
-### Social Media Tools
-- Interactive analytics dashboard
-- Real-time data visualization
-- Multi-platform monitoring interface
-
-## 🔗 Dependencies
-- Python 3.7+
-- PyQt5
-- Unreal Engine 5.x
-- ftrack API
-- Various tool-specific requirements
-
-## 📝 License
-MIT License - See LICENSE file for details
-
-## 👨‍💻 Developer
-Developed by Eric Fields (efieldsvfx@gmail.com)
-
-## 📧 Contact
-For questions or support, please contact: efieldsvfx@gmail.com
+This project is licensed under the MIT License - see the LICENSE file for details.

@@ -2,14 +2,22 @@
 
 This repository contains various production scripts and tools organized into different categories.
 
-## ProductionScripts Directory
+## Directory Structure
+
+The repository is organized as follows:
+
+### ProductionScripts Directory
 
 The `ProductionScripts` directory contains the following tool collections:
 
-- **Metahuman_tools**: Scripts and utilities for working with Metahuman assets in Unreal
+- **Maya_tools**: Scripts and utilities for Maya automation and asset management
+- **Nuke_tools**: Tools for Nuke compositing and automation
+- **Pipeline_tools**: Core pipeline infrastructure and utilities
 - **SocialMedia_tools**: Tools for social media analysis and management
-- **engine_tools**: Scripts related to engine-specific operations
-- **project_tools**: General project management and workflow tools
-- **texture_tools**: Scripts for texture processing and management
+- **Unreal_Tools**: Scripts and tools for Unreal Engine integration
 
-Each directory contains its own README with more detailed information about the specific tools and their usage.
+Each directory contains specialized tools and utilities for different aspects of the production pipeline. For detailed information about specific tools and their usage, please refer to the README.md file within the ProductionScripts directory.
+
+## Getting Started
+
+Please refer to the README.md file in the ProductionScripts directory for detailed setup instructions, dependencies, and usage guidelines for specific tool suites.
