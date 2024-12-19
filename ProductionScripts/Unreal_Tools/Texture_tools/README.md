@@ -5,30 +5,31 @@ Advanced texture and material management tools for Unreal Engine. Last Updated: 
 ## 🎨 Components
 
 ### Material Creator (`material_creator.py`)
-- **Material Instance Creation**
-  - Batch material instance generation
-  - Texture set integration
-  - Hierarchical selection interface
-  - Progress tracking
 
-- **Unreal Integration**
-  - Editor menu integration
-  - Custom toolbar entries
-  - Python command execution
-  - Asset validation
+#### Step 1: Select Texture Sets
+![Material Creator - Texture Set Selection](docs/images/MatImp_2.png)
+- Choose texture sets for material creation
+- Select multiple sets for batch processing
+
+#### Step 2: Material Integration
+![Material Creator - Import Results](docs/images/MatImp_1.png)
+- Automated material setup in folder structure
+- Material instance creation and attachment
+- Validation and error checking
 
 ### Texture Importer (`texture_import.py`)
-- **Multi-threaded Import**
-  - Thread-safe operations
-  - Batch processing support
-  - Progress visualization
-  - Error handling
 
-- **Asset Management**
-  - Automatic folder creation
-  - Material instance checking
-  - Asset validation
-  - Logging system
+#### Step 1: Asset Selection
+![Texture Importer - Asset Selection](docs/images/AssetImp_1.png)
+- Browse and select assets for import
+- Filter by type and category
+- Preview selected items
+
+#### Step 2: Import Confirmation
+![Texture Importer - Import Confirmation](docs/images/AssetImp_2.png)
+- Review selected assets
+- Confirm import settings
+- Start batch processing
 
 ## 🔧 Features
 
