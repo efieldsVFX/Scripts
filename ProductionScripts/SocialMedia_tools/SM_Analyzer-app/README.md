@@ -132,7 +132,6 @@ The SM_Analyzer is designed to seamlessly integrate with your VFX pipeline:
 For support, please contact:
 - Author: Eric Fields
 - Email: efieldsvfx@gmail.com
-- Portfolio: [efields.vfx](https://efields.vfx)
 
 ## 📝 License
 
